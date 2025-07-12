@@ -1,0 +1,43 @@
+/* Aplicación de variables */
+body {
+  background-color: var(--color_bg);
+  color: var(--color_text);
+}
+
+.nav_bar {
+  background-color: var(--color_nav);
+  color: var(--color_nav_text);
+  border-bottom: 2px solid var(--color_border);
+}
+
+input {
+  background-color: var(--color_input);
+  color: var(--color_input_text);
+  border: 1px solid var(--color_nav);
+}
+
+input[type="submit"] {
+  background-color: var(--color_nav);
+  color: var(--color_text);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: var(--color_input);
+  color: var(--color_nav);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color_text);
+}
+
+a {
+  color: var(--color_nav_text);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color_input_text);
+}

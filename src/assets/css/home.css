@@ -1,0 +1,24 @@
+body{
+    margin-left: auto; 
+    margin-right: auto; 
+    width: 100%;
+}
+
+.wrap {
+    position: fixed;
+    top : 0;
+    height: 50px;
+    z-index: 200;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+nav {
+    height: 100%;
+    margin-left: 40px;
+    margin-right: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    vertical-align: middle;
+}

@@ -1,0 +1,120 @@
+:root {
+  /* Texto, Fondo, Nav, Input, InputText */
+  --light_color1: #000000;
+  --light_color2: #efefef;
+  --light_color3: #f7f7f7;
+  --light_color4: #292929;
+  --light_color5: #ffffff;
+
+  --dark_color1: #e0e0e0;
+  --dark_color2: #121212;
+  --dark_color3: #1f1f1f;
+  --dark_color4: #2c2c2c;
+  --dark_color5: #bbbbbb;
+
+  --midnight_color1: #eef4ed;
+  --midnight_color2: #0d1b2a;
+  --midnight_color3: #1b263b;
+  --midnight_color4: #415a77;
+  --midnight_color5: #778da9;
+
+  --ocean_color1: #ffffff;
+  --ocean_color2: #223245;
+  --ocean_color3: #0d1f34;
+  --ocean_color4: #122238;
+  --ocean_color5: #48637c;
+
+  --space_color1: #ffffff;
+  --space_color2: #000000;
+  --space_color3: #000000;
+  --space_color4: #2f3236;
+  --space_color5: #ffffff;
+}
+
+/* Tema por defecto según sistema */
+:root:has(option[id="theme_system"]:checked){
+  color-scheme: light dark;
+}
+
+/* Tema claro (media query) */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color_text: var(--light_color1);
+    --color_bg: var(--light_color2);
+    --color_nav: var(--light_color3);
+    --color_input: var(--light_color4);
+    --color_input_text: var(--light_color5);
+    --color_nav_text: var(--light_color1);
+    --color_border: #cccccc;
+  }
+}
+
+/* Tema oscuro (media query) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color_text: var(--dark_color1);
+    --color_bg: var(--dark_color2);
+    --color_nav: var(--dark_color3);
+    --color_input: var(--dark_color4);
+    --color_input_text: var(--dark_color5);
+    --color_nav_text: var(--dark_color1);
+    --color_border: #333333;
+  }
+}
+
+/* Temas seleccionables manualmente */
+:root:has(option[id="theme_light"]:checked) {
+  --color_text: var(--light_color1);
+  --color_bg: var(--light_color2);
+  --color_nav: var(--light_color3);
+  --color_input: var(--light_color4);
+  --color_input_text: var(--light_color5);
+  --color_nav_text: var(--light_color1);
+  --color_border: #cccccc;
+  transition: all 0.5s;
+}
+
+:root:has(option[id="theme_dark"]:checked) {
+  --color_text: var(--dark_color1);
+  --color_bg: var(--dark_color2);
+  --color_nav: var(--dark_color3);
+  --color_input: var(--dark_color4);
+  --color_input_text: var(--dark_color5);
+  --color_nav_text: var(--dark_color1);
+  --color_border: #333333;
+  transition: all 0.5s;
+}
+
+:root:has(option[id="theme_ocean"]:checked) {
+  --color_text: var(--ocean_color1);
+  --color_bg: var(--ocean_color2);
+  --color_nav: var(--ocean_color3);
+  --color_input: var(--ocean_color4);
+  --color_input_text: var(--ocean_color5);
+  --color_nav_text: var(--ocean_color1);
+  --color_border: #2c3e50;
+  transition: all 0.5s;
+}
+
+:root:has(option[id="theme_space"]:checked) {
+  --color_text: var(--space_color1);
+  --color_bg: var(--space_color2);
+  --color_nav: var(--space_color3);
+  --color_input: var(--space_color4);
+  --color_input_text: var(--space_color5);
+  --color_nav_text: var(--space_color1);
+  --color_border: #444444;
+  transition: all 0.5s;
+}
+
+:root:has(option[id="theme_midnight"]:checked) {
+  --color_text: var(--midnight_color1);
+  --color_bg: var(--midnight_color2);
+  --color_nav: var(--midnight_color3);
+  --color_input: var(--midnight_color4);
+  --color_input_text: var(--midnight_color5);
+  --color_nav_text: var(--midnight_color1);
+  --color_border: #2a3d5c;
+  transition: all 0.5s;
+}
+
