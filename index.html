@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    
+
+    <link rel="shortcut icon" href="./assets/queen_icon_light-DQGbZmOn.svg" media="(prefers-color-scheme: dark)"/>
+    <link rel="shortcut icon" href="./assets/queen_icon-gu503BLC.svg" media="(prefers-color-scheme: light)" />
+    <!--https://publicdomainvectors.org/en/free-clipart/Chess-piece-symbol-image/68163.html-->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=League+Spartan:wght@100..900&family=Lobster&family=Luckiest+Guy&family=News+Cycle:wght@400;700&family=Oxygen:wght@300;400;700&family=Smooch+Sans:wght@100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Queens Game</title>
+    <script type="module" crossorigin src="./assets/index-ECeDFKCW.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-Bb1g0oRb.css">
+  </head>
+
+  <body>
+    <div id="app">
+
+      <div class="nav_wrap nav_bar">
+        <nav>
+
+          <div class="logo">
+            <a href="index.html">Queens Game</a>
+            <img src="data:image/svg+xml,%3c?xml%20version='1.0'%20encoding='utf-8'?%3e%3c!--%20Uploaded%20to:%20SVG%20Repo,%20www.svgrepo.com,%20Generator:%20SVG%20Repo%20Mixer%20Tools%20--%3e%3csvg%20width='800px'%20height='800px'%20viewBox='0%200%20512%20512'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20fill='%23000000'%20d='M477.518%20181.966a25%2025%200%200%201-34.91%2023l-62.29%20150.26h-248.92l-62.24-150.19a25%2025%200%201%201%209.73-7.29l87%2071.2%2020.92-126.4a25%2025%200%201%201%2014.7-1.85l54.31%20117%2054.42-117.3a25%2025%200%201%201%2014.58%202.08l20.93%20126.42%2087.26-71.3a25%2025%200%201%201%2044.51-15.63zm-71.66%20241.25h-300v60h300v-60zm-27.75-52h-244.22v36h244.22v-36z'/%3e%3c/svg%3e" alt="">
+          </div>
+          
+          <select name="ss" id="theme_selector" class="theme_selector">
+            <option id="theme_system" value="System">System</option>
+            <option id="theme_light" value="Light">Light</option>
+            <option id="theme_dark" value="Dark" selected>Dark</option>
+            <option id="theme_midnight" value="Midnight">Midnight</option>
+            <option id="theme_space" value="Space">Space</option>
+            <option id="theme_ocean" value="Ocean">Ocean</option>
+          </select>
+
+        </nav>
+      </div>
+
+      <div class="timer">
+        <h1 id="timer">00:00</h1>
+      </div>
+
+      <div class="board_wrapper">
+        <div class="board">
+
+          <table>
+            <tbody>
+              <tr>
+                <td><div id="div1" ondrop="dropHandler(event)"   ondragover="dragoverHandler(event)"></div></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><img class="queen_piece" src="data:image/svg+xml,%3c?xml%20version='1.0'%20encoding='utf-8'?%3e%3c!--%20Uploaded%20to:%20SVG%20Repo,%20www.svgrepo.com,%20Generator:%20SVG%20Repo%20Mixer%20Tools%20--%3e%3csvg%20width='800px'%20height='800px'%20viewBox='0%200%20512%20512'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20fill='%23000000'%20d='M477.518%20181.966a25%2025%200%200%201-34.91%2023l-62.29%20150.26h-248.92l-62.24-150.19a25%2025%200%201%201%209.73-7.29l87%2071.2%2020.92-126.4a25%2025%200%201%201%2014.7-1.85l54.31%20117%2054.42-117.3a25%2025%200%201%201%2014.58%202.08l20.93%20126.42%2087.26-71.3a25%2025%200%201%201%2044.51-15.63zm-71.66%20241.25h-300v60h300v-60zm-27.75-52h-244.22v36h244.22v-36z'/%3e%3c/svg%3e" id="img1" src="img_logo.gif" draggable="true" ondragstart="dragstartHandler(event)"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="game_selectors_wrapper">  
+
+          <select name="ds" id="dificulty" class="game_selectors">
+            <option value="1">Easy</option>
+            <option value="2" selected>Medium</option>
+            <option value="3">Hard</option>
+          </select>
+
+          <select name="szs" id="size" class="game_selectors">
+            <option value="7" selected>7x7</option>
+            <option value="8">8x8</option>
+            <option value="9">9x9</option>
+          </select>
+
+          <button id="new_game">New Game</button>
+
+        </div>
+      </div>
+
+    </div>
+
+  
+    <script src="src/scripts/drag_object.js"></script>
+  </body>
+
+</html>
