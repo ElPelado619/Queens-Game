@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="src/assets/css/color_themes.css">
     <link rel="stylesheet" href="src/assets/css/color_styles.css">
 
-    <link rel="icon" type="image/x-icon" href="src\assets\images/queen_icon.svg" />
+    <link rel="shortcut icon" href="src/assets/images/queen_icon_light.svg" media="(prefers-color-scheme: dark)"/>
+    <link rel="shortcut icon" href="src/assets/images/queen_icon.svg" media="(prefers-color-scheme: light)" />
     <!--https://publicdomainvectors.org/en/free-clipart/Chess-piece-symbol-image/68163.html-->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,26 +24,126 @@
   <body>
     <div id="app">
 
-      <div class="wrap nav_bar">
+      <div class="nav_wrap nav_bar">
         <nav>
 
-          <a href="index.html">Queens Game</a>
-          <select name="ss" id="theme_selector">
-            <option id="theme_system" value="System">Tema del sistema</option>
-            <option id="theme_light" value="Light">Claro</option>
-            <option id="theme_dark" value="Dark">Oscuro</option>
-            <option id="theme_midnight" value="Midnight">Medianoche</option>
-            <option id="theme_space" value="Space">Espacio</option>
-            <option id="theme_ocean" value="Ocean">Océano</option>
+          <div class="logo">
+            <a href="index.html">Queens Game</a>
+            <img src="src/assets/images/queen_icon.svg" alt="">
+          </div>
+          
+          <select name="ss" id="theme_selector" class="theme_selector">
+            <option id="theme_system" value="System">System</option>
+            <option id="theme_light" value="Light">Light</option>
+            <option id="theme_dark" value="Dark" selected>Dark</option>
+            <option id="theme_midnight" value="Midnight">Midnight</option>
+            <option id="theme_space" value="Space">Space</option>
+            <option id="theme_ocean" value="Ocean">Ocean</option>
           </select>
 
         </nav>
       </div>
 
+      <div class="timer">
+        <h1 id="timer">00:00</h1>
+      </div>
+
+      <div class="board_wrapper">
+        <div class="board">
+
+          <table>
+            <tbody>
+              <tr>
+                <td><div id="div1" ondrop="dropHandler(event)"   ondragover="dragoverHandler(event)"></div></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><img class="queen_piece" src="src/assets/images/queen_icon.svg" id="img1" src="img_logo.gif" draggable="true" ondragstart="dragstartHandler(event)"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="game_selectors_wrapper">  
+
+          <select name="ds" id="dificulty" class="game_selectors">
+            <option value="1">Easy</option>
+            <option value="2" selected>Medium</option>
+            <option value="3">Hard</option>
+          </select>
+
+          <select name="szs" id="size" class="game_selectors">
+            <option value="7" selected>7x7</option>
+            <option value="8">8x8</option>
+            <option value="9">9x9</option>
+          </select>
+
+          <button id="new_game">New Game</button>
+
+        </div>
+      </div>
+
     </div>
     <script type="module" src="/src/main.ts"></script>
 
-    
+  
+    <script src="src/scripts/drag_object.js"></script>
   </body>
 
 </html>

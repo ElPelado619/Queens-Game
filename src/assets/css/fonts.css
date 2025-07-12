@@ -16,7 +16,7 @@
   font-style: normal;
 }
 
-html {
-    scroll-behavior: smooth;
-    font-family: "Oxygen", sans-serif;
+html, body, input, select, textarea, button {
+  scroll-behavior: smooth;
+  font-family: "Oxygen", sans-serif;
 }

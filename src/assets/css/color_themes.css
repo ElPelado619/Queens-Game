@@ -1,42 +1,109 @@
 :root {
-  /* Texto, Fondo, Nav, Input, InputText */
-  --light_color1: #000000;
-  --light_color2: #efefef;
-  --light_color3: #f7f7f7;
-  --light_color4: #292929;
-  --light_color5: #ffffff;
+  --inverted_true: 100%;
+  --inverted_false: 0%;
 
+  /* Light */
+  --light_color1: #000000;
+  --light_color2: #c3c3c3;
+  --light_color3: #e2e2e2;
+  --light_color4: #a2a2a2;
+  --light_color5: #000000;
+  --light_border: #6a6a6a;
+  --light_nav_text: #000000;
+  --light_theme_cell_red: #ffb3b3;
+  --light_theme_cell_orange: #ffdfba;
+  --light_theme_cell_yellow: #ffffba;
+  --light_theme_cell_green: #baffc9;
+  --light_theme_cell_blue: #bae1ff;
+  --light_theme_cell_purple: #d5baff;
+  --light_theme_cell_pink: #ffbafc;
+  --light_theme_cell_peach: #ffd6a5;
+  --light_theme_cell_sky: #a0c4ff;
+  --light_theme_cell_mint: #caffbf;
+
+  /* Dark */
   --dark_color1: #e0e0e0;
   --dark_color2: #121212;
   --dark_color3: #1f1f1f;
   --dark_color4: #2c2c2c;
   --dark_color5: #bbbbbb;
+  --dark_border: #333333;
+  --dark_nav_text: #e0e0e0;
+  --dark_theme_cell_red: #ff6b6b;
+  --dark_theme_cell_pink: #f06595;
+  --dark_theme_cell_purple: #cc5de8;
+  --dark_theme_cell_violet: #845ef7;
+  --dark_theme_cell_indigo: #5c7cfa;
+  --dark_theme_cell_blue: #339af0;
+  --dark_theme_cell_cyan: #22b8cf;
+  --dark_theme_cell_teal: #20c997;
+  --dark_theme_cell_green: #51cf66;
+  --dark_theme_cell_gold: #fcc419;
 
+  /* Midnight Theme */
   --midnight_color1: #eef4ed;
-  --midnight_color2: #0d1b2a;
-  --midnight_color3: #1b263b;
-  --midnight_color4: #415a77;
-  --midnight_color5: #778da9;
+  --midnight_color2: #0a131e;
+  --midnight_color3: #141a27;
+  --midnight_color4: #202d3d;
+  --midnight_color5: #4c77b0;
+  --midnight_border: #1b2433;
+  --midnight_nav_text: #eef4ed;
+  --midnight_theme_cell_ice: #a6d1e6;
+  --midnight_theme_cell_sky: #89b0d9;
+  --midnight_theme_cell_slate: #698fbf;
+  --midnight_theme_cell_steel: #4d6fa5;
+  --midnight_theme_cell_navy: #395c91;
+  --midnight_theme_cell_marine: #284b7a;
+  --midnight_theme_cell_deep: #1a3a63;
+  --midnight_theme_cell_night: #112b4c;
+  --midnight_theme_cell_darknight: #0a1e36;
+  --midnight_theme_cell_void: #061226;
 
+  /* Ocean Theme */
   --ocean_color1: #ffffff;
-  --ocean_color2: #223245;
-  --ocean_color3: #0d1f34;
-  --ocean_color4: #122238;
-  --ocean_color5: #48637c;
+  --ocean_color2: #0d1f34;
+  --ocean_color3: #223245;
+  --ocean_color4: #274670;
+  --ocean_color5: #56adff;
+  --ocean_border: #2c3e50;
+  --ocean_nav_text: #ffffff;
+  --ocean_theme_cell_mint: #a8dadc;
+  --ocean_theme_cell_denim: #457b9d;
+  --ocean_theme_cell_navy: #1d3557;
+  --ocean_theme_cell_teal: #2a9d8f;
+  --ocean_theme_cell_seafoam: #76c893;
+  --ocean_theme_cell_grass: #99d98c;
+  --ocean_theme_cell_jade: #52b69a;
+  --ocean_theme_cell_wave: #34a0a4;
+  --ocean_theme_cell_deepsea: #168aad;
+  --ocean_theme_cell_abyss: #1e6091;
 
+  /* Space Theme */
   --space_color1: #ffffff;
   --space_color2: #000000;
   --space_color3: #000000;
   --space_color4: #2f3236;
   --space_color5: #ffffff;
+  --space_border: #202020;
+  --space_nav_text: #ffffff;
+  --space_theme_cell_white: #ffffff;
+  --space_theme_cell_light: #dddddd;
+  --space_theme_cell_silver: #bbbbbb;
+  --space_theme_cell_grey: #999999;
+  --space_theme_cell_dim: #777777;
+  --space_theme_cell_dark: #555555;
+  --space_theme_cell_darker: #333333;
+  --space_theme_cell_black: #111111;
+  --space_theme_cell_mid: #888888;
+  --space_theme_cell_ash: #cccccc;
 }
 
-/* Tema por defecto según sistema */
-:root:has(option[id="theme_system"]:checked){
+/* Preferencias del sistema */
+:root:has(option[id="theme_system"]:checked) {
   color-scheme: light dark;
 }
 
-/* Tema claro (media query) */
+/* Light */
 @media (prefers-color-scheme: light) {
   :root {
     --color_text: var(--light_color1);
@@ -44,12 +111,25 @@
     --color_nav: var(--light_color3);
     --color_input: var(--light_color4);
     --color_input_text: var(--light_color5);
-    --color_nav_text: var(--light_color1);
-    --color_border: #cccccc;
+    --color_nav_text: var(--light_nav_text);
+    --color_border: var(--light_border);
+    --invert_logo: var(--inverted_false);
+    --cell_border_colors: var(--light_cell_border_colors);
+
+    --cell_color_1: var(--light_theme_cell_red);
+    --cell_color_2: var(--light_theme_cell_orange);
+    --cell_color_3: var(--light_theme_cell_yellow);
+    --cell_color_4: var(--light_theme_cell_green);
+    --cell_color_5: var(--light_theme_cell_blue);
+    --cell_color_6: var(--light_theme_cell_purple);
+    --cell_color_7: var(--light_theme_cell_pink);
+    --cell_color_8: var(--light_theme_cell_peach);
+    --cell_color_9: var(--light_theme_cell_sky);
+    --cell_color_10: var(--light_theme_cell_mint);
   }
 }
 
-/* Tema oscuro (media query) */
+/* Dark */
 @media (prefers-color-scheme: dark) {
   :root {
     --color_text: var(--dark_color1);
@@ -57,21 +137,46 @@
     --color_nav: var(--dark_color3);
     --color_input: var(--dark_color4);
     --color_input_text: var(--dark_color5);
-    --color_nav_text: var(--dark_color1);
-    --color_border: #333333;
+    --color_nav_text: var(--dark_nav_text);
+    --color_border: var(--dark_border);
+    --invert_logo: var(--inverted_true);
+    --cell_border_colors: var(--dark_cell_border_colors);
+
+    --cell_color_1: var(--dark_theme_cell_red);
+    --cell_color_2: var(--dark_theme_cell_pink);
+    --cell_color_3: var(--dark_theme_cell_purple);
+    --cell_color_4: var(--dark_theme_cell_violet);
+    --cell_color_5: var(--dark_theme_cell_indigo);
+    --cell_color_6: var(--dark_theme_cell_blue);
+    --cell_color_7: var(--dark_theme_cell_cyan);
+    --cell_color_8: var(--dark_theme_cell_teal);
+    --cell_color_9: var(--dark_theme_cell_green);
+    --cell_color_10: var(--dark_theme_cell_gold);
   }
 }
 
-/* Temas seleccionables manualmente */
+/* Manual */
 :root:has(option[id="theme_light"]:checked) {
   --color_text: var(--light_color1);
   --color_bg: var(--light_color2);
   --color_nav: var(--light_color3);
   --color_input: var(--light_color4);
   --color_input_text: var(--light_color5);
-  --color_nav_text: var(--light_color1);
-  --color_border: #cccccc;
-  transition: all 0.5s;
+  --color_nav_text: var(--light_nav_text);
+  --color_border: var(--light_border);
+  --invert_logo: var(--inverted_false);
+  --cell_border_colors: var(--light_cell_border_colors);
+
+  --cell_color_1: var(--light_theme_cell_red);
+  --cell_color_2: var(--light_theme_cell_orange);
+  --cell_color_3: var(--light_theme_cell_yellow);
+  --cell_color_4: var(--light_theme_cell_green);
+  --cell_color_5: var(--light_theme_cell_blue);
+  --cell_color_6: var(--light_theme_cell_purple);
+  --cell_color_7: var(--light_theme_cell_pink);
+  --cell_color_8: var(--light_theme_cell_peach);
+  --cell_color_9: var(--light_theme_cell_sky);
+  --cell_color_10: var(--light_theme_cell_mint);
 }
 
 :root:has(option[id="theme_dark"]:checked) {
@@ -80,31 +185,21 @@
   --color_nav: var(--dark_color3);
   --color_input: var(--dark_color4);
   --color_input_text: var(--dark_color5);
-  --color_nav_text: var(--dark_color1);
-  --color_border: #333333;
-  transition: all 0.5s;
-}
+  --color_nav_text: var(--dark_nav_text);
+  --color_border: var(--dark_border);
+  --invert_logo: var(--inverted_true);
+  --cell_border_colors: var(--dark_cell_border_colors);
 
-:root:has(option[id="theme_ocean"]:checked) {
-  --color_text: var(--ocean_color1);
-  --color_bg: var(--ocean_color2);
-  --color_nav: var(--ocean_color3);
-  --color_input: var(--ocean_color4);
-  --color_input_text: var(--ocean_color5);
-  --color_nav_text: var(--ocean_color1);
-  --color_border: #2c3e50;
-  transition: all 0.5s;
-}
-
-:root:has(option[id="theme_space"]:checked) {
-  --color_text: var(--space_color1);
-  --color_bg: var(--space_color2);
-  --color_nav: var(--space_color3);
-  --color_input: var(--space_color4);
-  --color_input_text: var(--space_color5);
-  --color_nav_text: var(--space_color1);
-  --color_border: #444444;
-  transition: all 0.5s;
+  --cell_color_1: var(--dark_theme_cell_red);
+  --cell_color_2: var(--dark_theme_cell_pink);
+  --cell_color_3: var(--dark_theme_cell_purple);
+  --cell_color_4: var(--dark_theme_cell_violet);
+  --cell_color_5: var(--dark_theme_cell_indigo);
+  --cell_color_6: var(--dark_theme_cell_blue);
+  --cell_color_7: var(--dark_theme_cell_cyan);
+  --cell_color_8: var(--dark_theme_cell_teal);
+  --cell_color_9: var(--dark_theme_cell_green);
+  --cell_color_10: var(--dark_theme_cell_gold);
 }
 
 :root:has(option[id="theme_midnight"]:checked) {
@@ -113,8 +208,83 @@
   --color_nav: var(--midnight_color3);
   --color_input: var(--midnight_color4);
   --color_input_text: var(--midnight_color5);
-  --color_nav_text: var(--midnight_color1);
-  --color_border: #2a3d5c;
-  transition: all 0.5s;
+  --color_nav_text: var(--midnight_nav_text);
+  --color_border: var(--midnight_border);
+  --invert_logo: var(--inverted_true);
+  --cell_border_colors: var(--midnight_cell_border_colors);
+
+  --cell_color_1: var(--midnight_theme_cell_ice);
+  --cell_color_2: var(--midnight_theme_cell_sky);
+  --cell_color_3: var(--midnight_theme_cell_slate);
+  --cell_color_4: var(--midnight_theme_cell_steel);
+  --cell_color_5: var(--midnight_theme_cell_navy);
+  --cell_color_6: var(--midnight_theme_cell_marine);
+  --cell_color_7: var(--midnight_theme_cell_deep);
+  --cell_color_8: var(--midnight_theme_cell_night);
+  --cell_color_9: var(--midnight_theme_cell_darknight);
+  --cell_color_10: var(--midnight_theme_cell_void);
 }
 
+:root:has(option[id="theme_ocean"]:checked) {
+  --color_text: var(--ocean_color1);
+  --color_bg: var(--ocean_color2);
+  --color_nav: var(--ocean_color3);
+  --color_input: var(--ocean_color4);
+  --color_input_text: var(--ocean_color5);
+  --color_nav_text: var(--ocean_nav_text);
+  --color_border: var(--ocean_border);
+  --invert_logo: var(--inverted_true);
+  --cell_border_colors: var(--ocean_cell_border_colors);
+
+  --cell_color_1: var(--ocean_theme_cell_mint);
+  --cell_color_2: var(--ocean_theme_cell_denim);
+  --cell_color_3: var(--ocean_theme_cell_navy);
+  --cell_color_4: var(--ocean_theme_cell_teal);
+  --cell_color_5: var(--ocean_theme_cell_seafoam);
+  --cell_color_6: var(--ocean_theme_cell_grass);
+  --cell_color_7: var(--ocean_theme_cell_jade);
+  --cell_color_8: var(--ocean_theme_cell_wave);
+  --cell_color_9: var(--ocean_theme_cell_deepsea);
+  --cell_color_10: var(--ocean_theme_cell_abyss);
+}
+
+:root:has(option[id="theme_space"]:checked) {
+  --color_text: var(--space_color1);
+  --color_bg: var(--space_color2);
+  --color_nav: var(--space_color3);
+  --color_input: var(--space_color4);
+  --color_input_text: var(--space_color5);
+  --color_nav_text: var(--space_nav_text);
+  --color_border: var(--space_border);
+  --invert_logo: var(--inverted_true);
+  --cell_border_colors: var(--space_cell_border_colors);
+
+  --cell_color_1: var(--space_theme_cell_white);
+  --cell_color_2: var(--space_theme_cell_light);
+  --cell_color_3: var(--space_theme_cell_silver);
+  --cell_color_4: var(--space_theme_cell_grey);
+  --cell_color_5: var(--space_theme_cell_dim);
+  --cell_color_6: var(--space_theme_cell_dark);
+  --cell_color_7: var(--space_theme_cell_darker);
+  --cell_color_8: var(--space_theme_cell_black);
+  --cell_color_9: var(--space_theme_cell_mid);
+  --cell_color_10: var(--space_theme_cell_ash);
+}
+
+
+/* Aplicar transición */
+body, nav, input, select, button, a, h1, h2, h3, h4, h5, h6, option, .nav_wrap, .board, td, table, .board_wrapper, .game_selectors_wrapper, .queen_piece {
+  -webkit-transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  -moz-transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.icon {
+  fill: black;
+}
+
+@media (prefers-color-scheme: dark) {
+  icon {
+    fill: white;
+  }
+}

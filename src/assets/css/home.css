@@ -4,13 +4,12 @@ body{
     width: 100%;
 }
 
-.wrap {
+.nav_wrap {
     position: fixed;
     top : 0;
     height: 50px;
     z-index: 200;
     width: 100%;
-    margin-bottom: 20px;
 }
 
 nav {
@@ -21,4 +20,37 @@ nav {
     justify-content: space-between;
     align-items: center;
     vertical-align: middle;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.logo img {
+    margin-left: 10px;
+    width: 40px;
+    height: 40px;
+    filter: invert(var(--invert_logo));
+    -webkit-filter: invert(var(--invert_logo));
+    margin-bottom: 3%
+}
+
+select, input, button, .game_selectors {
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+button, .game_selectors {
+    font-size: large;
+}
+
+.timer {
+    text-align: center;
+    margin-top: 60px;
 }

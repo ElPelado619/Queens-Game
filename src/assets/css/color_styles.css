@@ -41,3 +41,19 @@ a {
 a:hover {
   color: var(--color_input_text);
 }
+
+input, button, textarea, .game_selectors {
+  background-color: var(--color_input);
+  color: var(--color_input_text);
+  border: none;
+}
+
+.theme_selector{
+  background-color: var(--color_bg);
+  color: var(--color_input_text);
+  border: none;
+}
+
+.timer {
+  filter: contrast(80%)
+}
