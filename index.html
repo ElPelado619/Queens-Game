@@ -52,16 +52,7 @@
         <div class="board">
 
           <table>
-            <tbody>
-              <tr>
-                <td><div id="div1" ondrop="dropHandler(event)"   ondragover="dragoverHandler(event)"></div></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
+            <tbody id="board">
               <tr>
                 <td></td>
                 <td></td>
@@ -109,7 +100,16 @@
               </tr>
               <tr>
                 <td></td>
-                <td><img class="queen_piece" src="src/assets/images/queen_icon.svg" id="img1" src="img_logo.gif" draggable="true" ondragstart="dragstartHandler(event)"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><img class="queen_piece" src="src/assets/images/queen_icon.svg"></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -141,9 +141,7 @@
 
     </div>
     <script type="module" src="/src/main.ts"></script>
-
-  
-    <script src="src/scripts/drag_object.js"></script>
+    <script src="src/scripts/board.js"></script>
   </body>
 
 </html>
