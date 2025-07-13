@@ -1,3 +1,15 @@
+import { obtenerMatrizAleatoria } from './read_boards.js';
+
+obtenerMatrizAleatoria().then(matriz => {
+  if (matriz) {
+    return matriz
+  }
+  else {
+    console.log('No se pudo obtener la matriz');
+  }
+});
+
+
 document.getElementById('board').oncontextmenu = function(e) {
   e.preventDefault(); //stop context menu from appearing
 }
@@ -8,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function draw_board(size){  //square size
 
-  board = document.getElementById('board');
+  let board = document.getElementById('board');
   board.innerHTML = '';
 
   for (let row = 0; row < size; row++) {
@@ -24,3 +36,5 @@ function draw_board(size){  //square size
     board.appendChild(new_row);
   }
 }
+
+

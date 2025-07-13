@@ -1,5 +1,5 @@
 :root {
-    --cell_color_default: var(--color_border);
+  --cell_color_default: var(--color_border);
 }
 
 .board_wrapper {
@@ -36,12 +36,24 @@
 }
 
 .board td:hover {
-  border: 2px solid white;
+  border: 2px solid rgba(255, 255, 255, 0.416);
+}
+
+@media (prefers-color-scheme: light) {
+  .board td:hover {
+    border: 2px solid #000000b2;
+  }
+}
+
+:root:has(option[id="theme_light"]:checked) .board td:hover {
+  border: 2px solid #000000b2;
 }
 
 .board td:active:hover {
   filter: brightness(1.25);
 }
+
+
 
 .queen_piece {
   width: 100%;
