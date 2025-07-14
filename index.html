@@ -14,8 +14,8 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Queens Game</title>
-    <script type="module" crossorigin src="https://elpelado619.github.io/Queens-Game/assets/index-BompssL3.js"></script>
-    <link rel="stylesheet" crossorigin href="https://elpelado619.github.io/Queens-Game/assets/index-Bb1g0oRb.css">
+    <script type="module" crossorigin src="https://elpelado619.github.io/Queens-Game/assets/index-CaEB2YzA.js"></script>
+    <link rel="stylesheet" crossorigin href="https://elpelado619.github.io/Queens-Game/assets/index-CJIpg8f6.css">
   </head>
 
   <body>
@@ -25,8 +25,10 @@
         <nav>
 
           <div class="logo">
-            <a href="index.html">Queens Game</a>
-            <img src="data:image/svg+xml,%3c?xml%20version='1.0'%20encoding='utf-8'?%3e%3c!--%20Uploaded%20to:%20SVG%20Repo,%20www.svgrepo.com,%20Generator:%20SVG%20Repo%20Mixer%20Tools%20--%3e%3csvg%20width='800px'%20height='800px'%20viewBox='0%200%20512%20512'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20fill='%23000000'%20d='M477.518%20181.966a25%2025%200%200%201-34.91%2023l-62.29%20150.26h-248.92l-62.24-150.19a25%2025%200%201%201%209.73-7.29l87%2071.2%2020.92-126.4a25%2025%200%201%201%2014.7-1.85l54.31%20117%2054.42-117.3a25%2025%200%201%201%2014.58%202.08l20.93%20126.42%2087.26-71.3a25%2025%200%201%201%2044.51-15.63zm-71.66%20241.25h-300v60h300v-60zm-27.75-52h-244.22v36h244.22v-36z'/%3e%3c/svg%3e" alt="">
+            <a href="index.html">Queens Game
+              <img src="data:image/svg+xml,%3c?xml%20version='1.0'%20encoding='utf-8'?%3e%3c!--%20Uploaded%20to:%20SVG%20Repo,%20www.svgrepo.com,%20Generator:%20SVG%20Repo%20Mixer%20Tools%20--%3e%3csvg%20width='800px'%20height='800px'%20viewBox='0%200%20512%20512'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20fill='%23000000'%20d='M477.518%20181.966a25%2025%200%200%201-34.91%2023l-62.29%20150.26h-248.92l-62.24-150.19a25%2025%200%201%201%209.73-7.29l87%2071.2%2020.92-126.4a25%2025%200%201%201%2014.7-1.85l54.31%20117%2054.42-117.3a25%2025%200%201%201%2014.58%202.08l20.93%20126.42%2087.26-71.3a25%2025%200%201%201%2044.51-15.63zm-71.66%20241.25h-300v60h300v-60zm-27.75-52h-244.22v36h244.22v-36z'/%3e%3c/svg%3e" alt="">
+            </a>
+            
           </div>
           
           <select name="ss" id="theme_selector" class="theme_selector">
@@ -49,16 +51,7 @@
         <div class="board">
 
           <table>
-            <tbody>
-              <tr>
-                <td><div id="div1" ondrop="dropHandler(event)"   ondragover="dragoverHandler(event)"></div></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
+            <tbody id="board">
               <tr>
                 <td></td>
                 <td></td>
@@ -106,7 +99,16 @@
               </tr>
               <tr>
                 <td></td>
-                <td><img class="queen_piece" src="data:image/svg+xml,%3c?xml%20version='1.0'%20encoding='utf-8'?%3e%3c!--%20Uploaded%20to:%20SVG%20Repo,%20www.svgrepo.com,%20Generator:%20SVG%20Repo%20Mixer%20Tools%20--%3e%3csvg%20width='800px'%20height='800px'%20viewBox='0%200%20512%20512'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20fill='%23000000'%20d='M477.518%20181.966a25%2025%200%200%201-34.91%2023l-62.29%20150.26h-248.92l-62.24-150.19a25%2025%200%201%201%209.73-7.29l87%2071.2%2020.92-126.4a25%2025%200%201%201%2014.7-1.85l54.31%20117%2054.42-117.3a25%2025%200%201%201%2014.58%202.08l20.93%20126.42%2087.26-71.3a25%2025%200%201%201%2044.51-15.63zm-71.66%20241.25h-300v60h300v-60zm-27.75-52h-244.22v36h244.22v-36z'/%3e%3c/svg%3e" id="img1" src="img_logo.gif" draggable="true" ondragstart="dragstartHandler(event)"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -127,19 +129,17 @@
 
           <select name="szs" id="size" class="game_selectors">
             <option value="7" selected>7x7</option>
-            <option value="8">8x8</option>
-            <option value="9">9x9</option>
+            <option value="8" hidden>8x8</option>
+            <option value="9" hidden>9x9</option>
           </select>
 
           <button id="new_game">New Game</button>
+          <button id="clear_board">Clear Board</button>
 
         </div>
       </div>
 
-    </div>
-
-  
-    <script src="src/scripts/drag_object.js"></script>
+    </div>
   </body>
 
 </html>
