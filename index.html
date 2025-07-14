@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="src/assets/css/home.css">
     <link rel="stylesheet" href="src/assets/css/board.css">
     <link rel="stylesheet" href="src/assets/css/color_themes.css">
-    <link rel="stylesheet" href="src/assets/css/color_styles.css">
+    <link rel="stylesheet" href="src/assets/css/cell_palletes.css">
 
     <link rel="shortcut icon" href="src/assets/images/queen_icon_light.svg" media="(prefers-color-scheme: dark)"/>
     <link rel="shortcut icon" href="src/assets/images/queen_icon.svg" media="(prefers-color-scheme: light)" />
@@ -28,8 +28,10 @@
         <nav>
 
           <div class="logo">
-            <a href="index.html">Queens Game</a>
-            <img src="src/assets/images/queen_icon.svg" alt="">
+            <a href="index.html">Queens Game
+              <img src="src/assets/images/queen_icon.svg" alt="">
+            </a>
+            
           </div>
           
           <select name="ss" id="theme_selector" class="theme_selector">
@@ -109,7 +111,7 @@
               </tr>
               <tr>
                 <td></td>
-                <td><img class="queen_piece" src="src/assets/images/queen_icon.svg"></td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -130,20 +132,20 @@
 
           <select name="szs" id="size" class="game_selectors">
             <option value="7" selected>7x7</option>
-            <option value="8">8x8</option>
-            <option value="9">9x9</option>
+            <option value="8" hidden>8x8</option>
+            <option value="9" hidden>9x9</option>
           </select>
 
           <button id="new_game">New Game</button>
+          <button id="clear_board">Clear Board</button>
 
         </div>
       </div>
 
     </div>
     <script type="module" src="/src/main.ts"></script>
-    <script src="src/scripts/board.js"></script>
-    <script type="module" src="src/main.js"></script>
-
+    <script type="module" src="src/scripts/draw_board.js"></script>
+    <script type="module" src="src/scripts/game_logic.js"></script>
   </body>
 
 </html>

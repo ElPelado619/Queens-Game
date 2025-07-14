@@ -1,6 +1,7 @@
 export async function obtenerMatrizAleatoria() {
   try {
-    const respuesta = await fetch('src\assets\boards\board7x7.txt');
+    const respuesta = await fetch('src/assets/boards/board7x7.txt');
+    const texto = await respuesta.text();
 
     const lineas = texto
       .trim()
