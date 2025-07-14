@@ -1,0 +1,133 @@
+body {
+    margin-left: auto; 
+    margin-right: auto; 
+    width: 100%;
+
+    background-color: var(--color_bg);
+    color: var(--color_text);
+}
+
+.nav_wrap {
+    position: fixed;
+    top : 0;
+    height: 50px;
+    z-index: 200;
+    width: 100%;
+}
+
+.nav_bar {
+    background-color: var(--color_nav);
+    color: var(--color_nav_text);
+    border-bottom: 2px solid var(--color_border);
+}
+
+nav {
+    height: 100%;
+    margin-left: 40px;
+    margin-right: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    vertical-align: middle;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.logo img {
+    margin-left: 10px;
+    width: 40px;
+    height: 40px;
+    filter: invert(var(--invert_logo));
+    -webkit-filter: invert(var(--invert_logo));
+    position: absolute;
+    top: 0;
+}
+
+select, input, button, .game_selectors {
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: var(--color_input);
+    color: var(--color_input_text);
+    border: 1px solid #00000000;
+}
+
+button, .game_selectors {
+    font-size: large;
+}
+
+input {
+    background-color: var(--color_input);
+    color: var(--color_input_text);
+    border: 1px solid var(--color_nav);
+}
+
+input[type="submit"] {
+    background-color: var(--color_nav);
+    color: var(--color_text);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: var(--color_input);
+    color: var(--color_nav);
+}
+
+input:hover, button:hover, .game_selectors:hover {
+    border: 1px solid var(--color_input_text);
+}
+
+input:active, button:active, .game_selectors:active {
+    border: 1px solid var(--color_bg);
+}
+
+.theme_selector {
+    background-color: var(--color_bg);
+    color: var(--color_input_text);
+    border: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--color_text);
+}
+
+a {
+    color: var(--color_nav_text);
+    text-decoration: none;
+}
+
+.timer {
+    text-align: center;
+    margin-top: 60px;
+    filter: contrast(80%);
+}
+
+.game_selectors_wrapper{
+    justify-content: space-around;
+}
+
+/* Aplicar transición */
+body, nav, input, select, button, a, h1, h2, h3, h4, h5, h6, option, .nav_wrap, .board, td, table, .board_wrapper, .game_selectors_wrapper, .queen_piece {
+  -webkit-transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  -moz-transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.icon {
+  fill: black;
+}
+
+@media (prefers-color-scheme: dark) {
+  icon {
+    fill: white;
+  }
+}

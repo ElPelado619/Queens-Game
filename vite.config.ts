@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-	base: ''
-
+	base: 'https://elpelado619.github.io/Queens-Game/'
 })

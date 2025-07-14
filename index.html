@@ -2,12 +2,150 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    
+    <link rel="stylesheet" href="src/assets/css/fonts.css">
+    <link rel="stylesheet" href="src/assets/css/home.css">
+    <link rel="stylesheet" href="src/assets/css/board.css">
+    <link rel="stylesheet" href="src/assets/css/color_themes.css">
+    <link rel="stylesheet" href="src/assets/css/cell_palletes.css">
+
+    <link rel="shortcut icon" href="src/assets/images/queen_icon_light.svg" media="(prefers-color-scheme: dark)"/>
+    <link rel="shortcut icon" href="src/assets/images/queen_icon.svg" media="(prefers-color-scheme: light)" />
+    <!--https://publicdomainvectors.org/en/free-clipart/Chess-piece-symbol-image/68163.html-->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=League+Spartan:wght@100..900&family=Lobster&family=Luckiest+Guy&family=News+Cycle:wght@400;700&family=Oxygen:wght@300;400;700&family=Smooch+Sans:wght@100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>Queens Game</title>
   </head>
+
   <body>
-    <div id="app"></div>
+    <div id="app">
+
+      <div class="nav_wrap nav_bar">
+        <nav>
+
+          <div class="logo">
+            <a href="index.html">Queens Game
+              <img src="src/assets/images/queen_icon.svg" alt="">
+            </a>
+            
+          </div>
+          
+          <select name="ss" id="theme_selector" class="theme_selector">
+            <option id="theme_system" value="System">System</option>
+            <option id="theme_light" value="Light">Light</option>
+            <option id="theme_dark" value="Dark" selected>Dark</option>
+            <option id="theme_midnight" value="Midnight">Midnight</option>
+            <option id="theme_space" value="Space">Space</option>
+            <option id="theme_ocean" value="Ocean">Ocean</option>
+          </select>
+
+        </nav>
+      </div>
+
+      <div class="timer">
+        <h1 id="timer">00:00</h1>
+      </div>
+
+      <div class="board_wrapper">
+        <div class="board">
+
+          <table>
+            <tbody id="board">
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="game_selectors_wrapper">  
+
+          <select name="ds" id="dificulty" class="game_selectors">
+            <option value="1">Easy</option>
+            <option value="2" selected>Medium</option>
+            <option value="3">Hard</option>
+          </select>
+
+          <select name="szs" id="size" class="game_selectors">
+            <option value="7" selected>7x7</option>
+            <option value="8" hidden>8x8</option>
+            <option value="9" hidden>9x9</option>
+          </select>
+
+          <button id="new_game">New Game</button>
+          <button id="clear_board">Clear Board</button>
+
+        </div>
+      </div>
+
+    </div>
     <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="src/scripts/draw_board.js"></script>
+    <script type="module" src="src/scripts/game_logic.js"></script>
   </body>
+
 </html>
