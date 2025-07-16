@@ -111,12 +111,16 @@ a {
     filter: contrast(80%);
 }
 
+.timer h1 {
+  font-family: monospace;
+}
+
 .game_selectors_wrapper{
     justify-content: space-around;
 }
 
 /* Aplicar transición */
-body, nav, input, select, button, a, h1, h2, h3, h4, h5, h6, option, .nav_wrap, .board, td, table, .board_wrapper, .game_selectors_wrapper, .queen_piece {
+body, nav, input, select, button, a, h1, h2, h3, h4, h5, h6, option, .nav_wrap, .board, td, table, .board_wrapper, .game_selectors_wrapper, .queen_piece, .board, .board_icons {
   -webkit-transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   -moz-transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;

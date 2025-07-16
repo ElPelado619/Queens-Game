@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="src/assets/css/board.css">
     <link rel="stylesheet" href="src/assets/css/color_themes.css">
     <link rel="stylesheet" href="src/assets/css/cell_palletes.css">
+    <link rel="stylesheet" href="src/assets/css/accesibility.css">
 
     <link rel="shortcut icon" href="src/assets/images/queen_icon_light.svg" media="(prefers-color-scheme: dark)"/>
     <link rel="shortcut icon" href="src/assets/images/queen_icon.svg" media="(prefers-color-scheme: light)" />
@@ -34,20 +35,35 @@
             
           </div>
           
-          <select name="ss" id="theme_selector" class="theme_selector">
-            <option id="theme_system" value="System">System</option>
-            <option id="theme_light" value="Light">Light</option>
-            <option id="theme_dark" value="Dark" selected>Dark</option>
-            <option id="theme_midnight" value="Midnight">Midnight</option>
-            <option id="theme_space" value="Space">Space</option>
-            <option id="theme_ocean" value="Ocean">Ocean</option>
-          </select>
+          <div>
+            <select name="gs" id="grid_selector" class="theme_selector">
+              <option id="show_grid" value="Show Grid">Show Grid</option>
+              <option  id="thick_grid" value="Thick Grid">Thick Grid</option>
+              <option id="hide_grid" value="Hide Grid">Hide Grid</option>
+            </select>
+
+            <select id="visual_settings" class="theme_selector">
+              <option id="regular_visuals" value="accessible_off" selected>Visual help Off</option>
+              <option id="visual_accessibility" value="accessible_on">Visual help On</option>
+            </select>
+
+            <select name="ss" id="theme_selector" class="theme_selector">
+              <option id="theme_system" value="System" selected>System</option>
+              <option id="theme_light" value="Light">Light</option>
+              <option id="theme_dark" value="Dark">Dark</option>
+              <option id="theme_newspaper" value="Newspaper">Newspaper</option>
+              <option id="theme_midnight" value="Midnight">Midnight</option>
+              <option id="theme_space" value="Space">Space</option>
+              <option id="theme_ocean" value="Ocean">Ocean</option>
+            </select>
+          </div>
+
 
         </nav>
       </div>
 
       <div class="timer">
-        <h1 id="timer">00:00</h1>
+        <h1 id="timer">00:00:00.00</h1>
       </div>
 
       <div class="board_wrapper">
@@ -140,12 +156,14 @@
           <button id="clear_board">Clear Board</button>
 
         </div>
+
       </div>
 
     </div>
     <script type="module" src="/src/main.ts"></script>
     <script type="module" src="src/scripts/draw_board.js"></script>
     <script type="module" src="src/scripts/game_logic.js"></script>
+    <script type="module" src="src/scripts/timer.js"></script>
   </body>
 
 </html>

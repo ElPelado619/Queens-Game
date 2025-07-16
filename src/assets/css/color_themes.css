@@ -6,9 +6,9 @@
 
   /* Light */
   --light_color1: #000000;
-  --light_color2: #dcdcdc;
-  --light_color3: #e2e2e2;
-  --light_color4: #a2a2a2;
+  --light_color2: #dfdfdf;
+  --light_color3: #c5c5c5;
+  --light_color4: #8e8e8e;
   --light_color5: #000000;
   --light_border: #9c9c9c;
   --light_nav_text: #000000;
@@ -22,10 +22,19 @@
   --dark_border: #333333;
   --dark_nav_text: #e0e0e0;
 
+  /* Newspaper Theme */
+  --newspaper_color1: #000000;
+  --newspaper_color2: #b5b5b5;
+  --newspaper_color3: #8d8d8d;
+  --newspaper_color4: #888888;
+  --newspaper_color5: #1a1a1a;
+  --newspaper_border: #585858;
+  --newspaper_nav_text: #2a2a2a;
+
   /* Midnight Theme */
   --midnight_color1: #eef4ed;
   --midnight_color2: #0a131e;
-  --midnight_color3: #141a27;
+  --midnight_color3: #070a12;
   --midnight_color4: #202d3d;
   --midnight_color5: #4c77b0;
   --midnight_border: #1b2433;
@@ -34,7 +43,7 @@
   /* Ocean Theme */
   --ocean_color1: #ffffff;
   --ocean_color2: #0d1f34;
-  --ocean_color3: #223245;
+  --ocean_color3: #0d1723;
   --ocean_color4: #274670;
   --ocean_color5: #56adff;
   --ocean_border: #2c3e50;
@@ -104,6 +113,17 @@
   --color_nav_text: var(--dark_nav_text);
   --color_border: var(--dark_border);
   --invert_logo: var(--inverted_true);
+}
+
+:root:has(option[id="theme_newspaper"]:checked) {
+  --color_text: var(--newspaper_color1);
+  --color_bg: var(--newspaper_color2);
+  --color_nav: var(--newspaper_color3);
+  --color_input: var(--newspaper_color4);
+  --color_input_text: var(--newspaper_color5);
+  --color_nav_text: var(--newspaper_nav_text);
+  --color_border: var(--newspaper_border);
+  --invert_logo: var(--inverted_false);
 }
 
 :root:has(option[id="theme_midnight"]:checked) {

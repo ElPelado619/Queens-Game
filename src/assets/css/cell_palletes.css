@@ -1,19 +1,19 @@
 :root {
-    --cell_border_colors: #00000000;
-    --cell_border_color_dark: #ffffff00;
-    --cell_border_color_light: #00000000;
+  --board_outer_colors: #00000000;
+  --board_outer_color_light: #000000;
+  --board_outer_color_dark: #ffffff;
 
-    /* Default cell colors */
-    --cell_color_1: #E63946;
-    --cell_color_2: #F4A261;
-    --cell_color_3: #2a9d84;
-    --cell_color_4: #c278f3;
-    --cell_color_5: #8062e1;
-    --cell_color_6: #e3ae4a;
-    --cell_color_7: #43aaaa;
-    --cell_color_8: #A8DADC;
-    --cell_color_9: #FB5607;
-    --cell_color_10: #6A0573;
+  /* Default cell colors */
+  --cell_color_1: #f94144;
+  --cell_color_2: #f3722c;
+  --cell_color_3: #f8961e;
+  --cell_color_4: #f9c74f;
+  --cell_color_5: #90be6d;
+  --cell_color_6: #43aa8b;
+  --cell_color_7: #577590;
+  --cell_color_8: #277da1;
+  --cell_color_9: #9d4edd;
+  --cell_color_10: #5f0f40;
 }
 
 /* Light */
@@ -29,7 +29,8 @@
     --cell_color_8: #277da1;
     --cell_color_9: #9d4edd;
     --cell_color_10: #5f0f40;
-    --cell_border_colors: var(--cell_border_color_light);
+
+    --board_outer_colors: var(--board_outer_color_light);
   }
 }
 
@@ -46,7 +47,8 @@
     --cell_color_8: #efa356;
     --cell_color_9: #bcce64;
     --cell_color_10: #7cc373;
-    --cell_border_colors: var(--cell_border_color_dark);
+
+    --board_outer_colors: var(--board_outer_color_dark);
   }
 }
 
@@ -63,7 +65,8 @@
     --cell_color_8: #277da1;
     --cell_color_9: #9d4edd;
     --cell_color_10: #5f0f40;
-    --cell_border_colors: var(--cell_border_color_light);
+
+    --board_outer_colors: var(--board_outer_color_light);
 }
 
 :root:has(option[id="theme_dark"]:checked) {
@@ -77,8 +80,25 @@
     --cell_color_8: #efa356;
     --cell_color_9: #bcce64;
     --cell_color_10: #7cc373;
-    --cell_border_colors: var(--cell_border_color_dark);
+
+    --board_outer_colors: var(--board_outer_color_dark);
 }
+
+:root:has(option[id="theme_newspaper"]:checked) {
+    --cell_color_1: #eeeeee;
+    --cell_color_2: #d8d8d8;
+    --cell_color_3: #c2c2c2;
+    --cell_color_4: #acacac;
+    --cell_color_5: #969696;
+    --cell_color_6: #808080;
+    --cell_color_7: #6a6a6a;
+    --cell_color_8: #545454;
+    --cell_color_9: #3e3e3e;
+    --cell_color_10: #282828;
+
+    --board_outer_colors: #000000;
+}
+
 
 
 :root:has(option[id="theme_midnight"]:checked) {
@@ -86,13 +106,14 @@
     --cell_color_2: #b88e2e;
     --cell_color_3: #5d8720;
     --cell_color_4: #145ca1;
-    --cell_color_5: #4c3a6e;
+    --cell_color_5: #8536a7;
     --cell_color_6: #b01868;
-    --cell_color_7: #2058a4;
+    --cell_color_7: #cb58c7;
     --cell_color_8: #5629a8;
     --cell_color_9: #c04a04;
     --cell_color_10: #048f6e;
-    --cell_border_colors: var(--cell_border_color_dark);
+
+    --board_outer_colors: var(--board_outer_color_dark);
 }
 
 :root:has(option[id="theme_ocean"]:checked) {
@@ -106,7 +127,8 @@
     --cell_color_8: #b9921a;
     --cell_color_9: #699aa4;
     --cell_color_10: #007199;
-    --cell_border_colors: var(--cell_border_color_light);
+
+    --board_outer_colors: var(--board_outer_color_dark);
 }
 
 :root:has(option[id="theme_space"]:checked) {
@@ -114,11 +136,12 @@
     --cell_color_2: #b89b34;
     --cell_color_3: #059d7a;
     --cell_color_4: #0d6a8f;
-    --cell_color_5: #732ea8;
+    --cell_color_5: #8e42c8;
     --cell_color_6: #6aa2b8;
     --cell_color_7: #0a5457;
     --cell_color_8: #b24d7f;
-    --cell_color_9: #8220a0;
+    --cell_color_9: #5520a0;
     --cell_color_10: #1a6c8e;
-    --cell_border_colors: var(--cell_border_color_light);
+
+    --board_outer_colors: var(--board_outer_color_dark);
 }
