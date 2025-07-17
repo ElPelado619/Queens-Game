@@ -1,36 +1,36 @@
-export async function obtenerMatrizAleatoria(size) {
+export async function getRandomMatrix(size) {
   try {
-    let respuesta;
+    let answer;
 
     switch (size) {
       case 7:
-        respuesta = await fetch('src/assets/boards/boards7.txt');
+        answer = await fetch('src/assets/boards/boards7.txt');
         break;
       case 8:
-        respuesta = await fetch('src/assets/boards/boards8.txt');
+        answer = await fetch('src/assets/boards/boards8.txt');
         break;
       case 9:
-        respuesta = await fetch('src/assets/boards/boards9.txt');
+        answer = await fetch('src/assets/boards/boards9.txt');
         break;
       case 10:
-        respuesta = await fetch('src/assets/boards/boards10.txt');
+        answer = await fetch('src/assets/boards/boards10.txt');
         break;
       default:
         throw new Error("Board size of " + size + " not valid");
     }
    
-    const texto = await respuesta.text();
+    const text = await answer.text();
 
-    const lineas = texto
+    const lines = text
       .trim()
       .split('\n')
       .filter(linea => linea.trim().length > 0);
 
-    const indice = Math.floor(Math.random() * lineas.length);
-    const lineaSeleccionada = lineas[indice];
+    const index = Math.floor(Math.random() * lines.length);
+    const selectedLines = lines[index];
 
-    const matriz = JSON.parse(lineaSeleccionada);
-    return matriz;
+    const matrix = JSON.parse(selectedLines);
+    return matrix;
   } catch (error) {
     console.error('Could not load the board:', error);
     return null;

@@ -15,9 +15,9 @@ const speed = {
     win: 1
 };
 const volume = {
-    place: 0.6,
-    remove: 0.5,
-    win: 0.5
+    place: 0.25,
+    remove: 0.25,
+    win: 0.3
 };
 
 let muted = false;

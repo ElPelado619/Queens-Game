@@ -1,4 +1,4 @@
-const VERSION = "0.2.0";
+const VERSION = "0.3.0";
 
 function displayStartupInfo() {
   const startupTime = new Date().toLocaleString();

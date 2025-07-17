@@ -1,6 +1,11 @@
-# Queens Game
-## Agustín Yornet
-## Joaquín Yornet
-### Version 0.2.0
+# Queens Game - Version 0.3.0
 
-Logo: https://www.svgrepo.com/svg/320075/chess-queen
+https://elpelado619.github.io/Queens-Game/
+
+
+Diseño Web: https://github.com/JoaquinYornet
+
+Lógica: https://github.com/ElPelado619
+
+
+Logos: www.svgrepo.com

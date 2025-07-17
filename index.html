@@ -32,21 +32,46 @@
           <div class="logo">
             <a href="index.html">Queens Game
               <img src="src/assets/images/queen_icon.svg" alt="">
-            </a>
+            </a>   
             
           </div>
-          
+
           <div class="right_nav_items">
+
+            <div class="dropdown">
+              <span>
+                <div>
+                  <img src="src/assets/images/question_mark.svg" alt="" class="question_mark">
+                </div>
+              </span>
+              <div class="dropdown-content">
+                <div class="game_info_wrapper">
+                  <div class="game_info">
+                    
+                    <h4>Rules</h4>
+                    <div>
+                      <li>Place one queen in every region of color to win.</li><br>
+                      <li>Click on a square to place a queen or remove one.</li><br>
+                      <li>Right click to place a marker or remove one.</li><br>
+                      <li>You can drag the mouse to draw on the board.</li><br>
+                      <li>Make sure no queens are in the same row or column.</li><br>
+                      <li>Queens can be on the same diagonal.</li><br>
+                      <li>Queens can't be adyacent to each other.</li><br>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <select id="grid_selector" class="theme_selector">
-              <option id="thin_grid" value="Thin Grid">Thin Grid</option>
-              <option id="regular_grid" value="Regular Grid">Grid</option>
-              <option id="thick_grid" value="Thick Grid">Thick Grid</option>
-              <option id="hide_grid" value="Hide Grid" selected>Hide Grid</option>
+              <option id="border" value="Border" selected>Border</option>
+              <option id="simple" value="Simple">Simple</option>
+              <option id="grid" value="Grid">Grid</option>
             </select>
 
             <select id="visual_settings" class="theme_selector">
-              <option id="regular_visuals" value="accessible_off" selected>Low contrast</option>
-              <option id="visual_accessibility" value="accessible_on">High contrast</option>
+              <option id="regular_visuals" value="accessible_off">Low contrast</option>
+              <option id="visual_accessibility" value="accessible_on" selected>High contrast</option>
             </select>
 
             <select id="theme_selector" class="theme_selector">
@@ -62,9 +87,7 @@
             <div class="sound_icon">
               <img src="src/assets/images/volume.svg" alt="" id="volume" class="volume_on">
             </div>
-            
           </div>
-
 
         </nav>
       </div>
@@ -88,6 +111,7 @@
             <option value="1">Easy</option>
             <option value="2" selected>Medium</option>
             <option value="3">Hard</option>
+            <option value="0">Any</option>
           </select>
 
           <select name="szs" id="size" class="game_selectors">
@@ -102,22 +126,6 @@
 
         </div>
 
-      </div>
-
-      <div class="game_info_wrapper">
-
-        <div class="game_info">
-          <h2>Queens Game</h2>
-          <h4>Rules</h4>
-          <div>
-            <li>Place one queen in every region of color to win</li>
-            <li>Click on a square to place a queen or remove one</li>
-            <li>Right click to place a marker or remove one</li>
-            <li>Make sure no queens are in the same row or column</li>
-            <li>Queens can be on the same diagonal</li>
-            <li>Queens can't be adyacent to each other</li>
-          </div>
-        </div>
       </div>
 
     </div>

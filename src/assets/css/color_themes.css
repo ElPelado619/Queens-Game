@@ -8,11 +8,11 @@
 
   /* Light */
   --light_color1: #000000;
-  --light_color2: #dfdfdf;
-  --light_color3: #c5c5c5;
-  --light_color4: #8e8e8e;
+  --light_color2: #ffffff;
+  --light_color3: #f0f0f0;
+  --light_color4: #c9c9c9;
   --light_color5: #000000;
-  --light_border: #9c9c9c;
+  --light_border: #cbcbcb;
   --light_nav_text: #000000;
 
   /* Dark */
@@ -26,7 +26,7 @@
 
   /* Newspaper Theme */
   --newspaper_color1: #000000;
-  --newspaper_color2: #b5b5b5;
+  --newspaper_color2: #a3a3a3;
   --newspaper_color3: #8d8d8d;
   --newspaper_color4: #888888;
   --newspaper_color5: #1a1a1a;
@@ -45,7 +45,7 @@
   /* Space Theme */
   --space_color1: #ffffff;
   --space_color2: #000000;
-  --space_color3: #000000;
+  --space_color3: #0d0d0d;
   --space_color4: #2f3236;
   --space_color5: #ffffff;
   --space_border: #202020;
@@ -53,15 +53,15 @@
 
   /* Ocean Theme */
   --ocean_color1: #ffffff;
-  --ocean_color2: #0d1f34;
-  --ocean_color3: #152539;
+  --ocean_color2: #0f243b;
+  --ocean_color3: #111e2f;
   --ocean_color4: #274670;
   --ocean_color5: #56adff;
   --ocean_border: #2c3e50;
   --ocean_nav_text: #ffffff;
 }
 
-/* Preferencias del sistema */
+
 :root:has(option[id="theme_system"]:checked) {
   color-scheme: light dark;
 }

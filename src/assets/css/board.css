@@ -16,13 +16,13 @@ table {
   max-width: 500px;
   margin-bottom: 20px;
   background-color: var(--board_outer_colors);
-  border-radius: 6px;
 }
 
 .board table {
   width: 100%;
   height: 100%;
   table-layout: fixed;
+  border-radius: 6px;
 }
 
 .board td {
@@ -42,28 +42,32 @@ table {
   filter: brightness(1.2);
 }
 
-:root:has(option[id="thin_grid"]:checked) table{
-  border-collapse: separate;
-  border: 0px solid var(--board_outer_colors);
-  border-spacing: 2px;
+
+:root:has(option[id="border"]:checked) table{
+  border-collapse: collapse;
+  border-radius: 5px;
+  box-shadow: 0 0 0 2px var(--board_outer_colors);
 }
 
-:root:has(option[id="regular_grid"]:checked) table{
-  border-collapse: separate;
-  border: 0px solid var(--board_outer_colors);
-  border-spacing: 3.5px;
-}
-
-:root:has(option[id="thick_grid"]:checked) table{
-  border-collapse: separate;
-  border: 0px solid var(--board_outer_colors);
-  border-spacing: 5px;
-}
-
-:root:has(option[id="hide_grid"]:checked) table{
+:root:has(option[id="simple"]:checked) table{
   border-collapse: collapse;
   background-color: #00000000;
   border: none;
+}
+
+:root:has(option[id="grid"]:checked) table{
+  border-collapse: separate;
+  border: 0px solid #00000000;
+  background-color: #00000000;
+  border-spacing: 2px;
+}
+
+/* for newspaper theme */
+:root:has(option[id="grid"]:checked):root:has(option[id="theme_newspaper"]:checked) table{
+  border-collapse: separate;
+  border: 0px solid #00000000;
+  background-color: var(--board_outer_colors);
+  border-spacing: 2px;
 }
 
 
@@ -125,15 +129,17 @@ table {
 .icon_queen.invalid_queen {
   background-image: url("../images/queen_icon_contrast.svg");
   transition: all 0.2s ease-in-out;
-  filter: invert(25%) sepia(20%) saturate(3000%) hue-rotate(-15deg) brightness(0.9) contrast(1.2) drop-shadow(0 0 0.5rem #ff0000);
-  -webkit-filter: invert(25%) sepia(20%) saturate(3000%) hue-rotate(-15deg) brightness(0.9) contrast(1.2) drop-shadow(0 0 0.5rem #ff0000);
+  filter: invert(25%) sepia(20%) saturate(3000%) hue-rotate(-45deg) brightness(0.9) contrast(1.2) drop-shadow(0 0 0.5rem #ff0000);
+  -webkit-filter: invert(25%) sepia(20%) saturate(3000%) hue-rotate(-45deg) brightness(0.9) contrast(1.2) drop-shadow(0 0 0.5rem #ff0000);
 
 }
 
-:root:has(option[id="theme_newspaper"]:checked) .icon_queen.invalid_queen{
-  filter: invert(25%) sepia(20%) saturate(3000%) hue-rotate(-15deg) brightness(0.9) contrast(1.2) drop-shadow(0 0 0.5rem #ff0000) grayscale(1);
-  -webkit-filter: invert(25%) sepia(20%) saturate(3000%) hue-rotate(-15deg) brightness(0.9) contrast(1.2) drop-shadow(0 0 0.5rem #ff0000) grayscale(1);
-  transition: none;
+:root:has(option[id="theme_newspaper"]:checked):root:has(option#visual_accessibility:checked) .icon_queen.invalid_queen {
+  background-image: url("../images/queen_icon.svg");
+  transition: all 0.2s ease-in-out;
+  filter: invert(25%) sepia(20%) saturate(3000%) hue-rotate(-45deg) brightness(0.9) contrast(1.2) drop-shadow(0 0 0.5rem #ff0000);
+  -webkit-filter: invert(25%) sepia(20%) saturate(3000%) hue-rotate(-45deg) brightness(0.9) contrast(1.2) drop-shadow(0 0 0.5rem #ff0000);
+  block-size: 200%;
 }
 
 #board, #board td, #board img, .board td[class*="cell_color_"], #board table, #board tbody, table{

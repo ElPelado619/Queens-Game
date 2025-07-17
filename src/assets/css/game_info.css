@@ -1,3 +1,29 @@
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  padding: 4px 4px;
+  z-index: 1;
+  border-radius: 20px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.question_mark {
+    margin-top: 3px;
+    width: 24px;
+    filter: invert(var(--invert_logo));
+    -webkit-filter: invert(var(--invert_logo));
+    cursor: pointer;
+}
+
 .game_info_wrapper{
     display: flex;
     flex-direction: column;
@@ -6,17 +32,12 @@
 }
 
 .game_info {
-    margin-top: 40px;
-    width: 420px;
+    width: 300px;
     border-radius: 10px;
-    border: 2px solid var(--color_border);
     display: flex;
     flex-direction: column;
     background-color: var(--color_nav);
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px;
     justify-content: space-between;
     align-items: center;
 }
