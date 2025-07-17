@@ -1,4 +1,5 @@
 import { startTimer, stopTimer, getCurrentTime } from './timer.js';
+import { playSound } from './audio.js';
 
 let matriz_reinas = null;
 let matriz_colores = null;
@@ -9,6 +10,7 @@ let mouseIsDown = false;
 let mouseButton = null;
 let lastEdited = new Set();
 let lastEditedTimeout = null;
+let isInitialClick = true; // Track initial clicks for sound control
 
 window.addEventListener('blur', () => {
   mouseIsDown = false;
@@ -23,6 +25,7 @@ document.addEventListener('mousedown', (e) => {
   mouseIsDown = true;
   mouseButton = e.button;
   lastEdited.clear();
+  isInitialClick = true; // This is a new click operation
 
   if (e.target.closest('td')) {
     const cell = e.target.closest('td');
@@ -40,11 +43,13 @@ document.addEventListener('mouseup', (e) => {
 });
 
 document.getElementById("board").addEventListener('contextmenu', (e) => e.preventDefault());
+document.getElementById("board_table").addEventListener('contextmenu', (e) => e.preventDefault());
 
 function resetInputStates() {
   mouseIsDown = false;
   mouseButton = null;
   lastEdited.clear();
+  isInitialClick = true;
 
   if (lastEditedTimeout) {
     clearTimeout(lastEditedTimeout);
@@ -53,8 +58,7 @@ function resetInputStates() {
 }
 
 export async function start_game(nueva_matriz, force_new_game) {
-
-  document.getElementById("timer").style.color = "var(--color_text)"
+  document.getElementById("timer").style.color = "var(--color_text)";
   document.getElementById("timer").style.textShadow = "0 0 0px #00000000";
 
   matriz_colores = nueva_matriz;
@@ -115,7 +119,7 @@ function render_icon(row, col) {
     icon.className = 'board_icons icon_queen';
     icon.dataset.row = row;
     icon.dataset.col = col;
-    celda.appendChild(icon);
+    celda.appendChild(icon);    
   } else if (valor === 2) {
     const icon = document.createElement('div');
     icon.className = 'board_icons icon_cross';
@@ -131,12 +135,26 @@ function edit_cell(row, col, tipo) {
   if (lastEdited.has(key)) return;
   lastEdited.add(key);
 
+  const previousValue = matriz_reinas[row][col];
+  
   if (tipo === 1) {
-    matriz_reinas[row][col] = matriz_reinas[row][col] === 1 ? 0 : 1;
+    const wasEmpty = matriz_reinas[row][col] === 0;
+    const wasQueen = matriz_reinas[row][col] === 1;
+
+    matriz_reinas[row][col] = wasQueen ? 0 : 1;
+
+    if (isInitialClick) {
+      if (matriz_reinas[row][col] === 1) {
+        playSound('place');
+      } else if (wasQueen) {
+        playSound('remove');
+      }
+    }
   } else if (tipo === 2) {
     matriz_reinas[row][col] = matriz_reinas[row][col] === 2 ? 0 : 2;
   }
 
+  isInitialClick = false; // Mark that we've passed the initial click
   render_icon(row, col);
   localStorage.setItem("matriz_reinas", JSON.stringify(matriz_reinas));
   check_win_condition();
@@ -159,6 +177,7 @@ function agregar_listeners_drag() {
 
       newCell.addEventListener('click', (e) => {
         if (e.button === 0 && !gameCompleted) {
+          isInitialClick = true; // Force sound for click
           edit_cell(row, col, 1);
         }
       });
@@ -166,6 +185,7 @@ function agregar_listeners_drag() {
       newCell.addEventListener('contextmenu', (e) => {
         e.preventDefault();
         if (!gameCompleted) {
+          isInitialClick = true; // Force sound for right-click
           edit_cell(row, col, 2);
         }
       });
@@ -195,12 +215,14 @@ function valid_coords(row, col) {
 export function cell_clicked(cell_id) {
   if (gameCompleted) return;
   const [_, row, col] = cell_id.split('_').map(Number);
+  isInitialClick = true; // Ensure sound plays
   edit_cell(row, col, 1);
 }
 
 export function cell_right_clicked(cell_id) {
   if (gameCompleted) return;
   const [_, row, col] = cell_id.split('_').map(Number);
+  isInitialClick = true; // Ensure sound plays
   edit_cell(row, col, 2);
 }
 
@@ -269,8 +291,9 @@ function check_win_condition() {
     localStorage.setItem("miliseconds", JSON.stringify(getCurrentTime()));
     resetInputStates();
     stopTimer();
+    playSound('win');
     victory_cells();
-    document.getElementById("timer").style.color = "#61e82c";
+    document.getElementById("timer").style.color = "var(--timer_victory_color)";
     document.getElementById("timer").style.textShadow = "0 0 10px #61e82c";
   }
 
@@ -279,7 +302,7 @@ function check_win_condition() {
 
 function victory_cells() {
   for (let i = 0; i < size; i++) {
-    const delay = i * 0.3; // 0.3s de delay entre filas (ajustable)
+    const delay = i * 0.3;
     for (let j = 0; j < size; j++) {
       const cell = document.getElementById(`cell_${i}_${j}`);
       if (cell) {
@@ -289,4 +312,3 @@ function victory_cells() {
     }
   }
 }
-

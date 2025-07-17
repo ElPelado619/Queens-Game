@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="src/assets/css/color_themes.css">
     <link rel="stylesheet" href="src/assets/css/cell_palletes.css">
     <link rel="stylesheet" href="src/assets/css/accesibility.css">
+    <link rel="stylesheet" href="src/assets/css/game_info.css">
 
     <link rel="shortcut icon" href="src/assets/images/queen_icon_light.svg" media="(prefers-color-scheme: dark)"/>
     <link rel="shortcut icon" href="src/assets/images/queen_icon.svg" media="(prefers-color-scheme: light)" />
@@ -23,7 +24,7 @@
   </head>
 
   <body>
-    <div id="app">
+    <div id="app" class="page_wrapper">
 
       <div class="nav_wrap nav_bar">
         <nav>
@@ -35,8 +36,8 @@
             
           </div>
           
-          <div>
-            <select name="gs" id="grid_selector" class="theme_selector">
+          <div class="right_nav_items">
+            <select id="grid_selector" class="theme_selector">
               <option id="thin_grid" value="Thin Grid">Thin Grid</option>
               <option id="regular_grid" value="Regular Grid">Grid</option>
               <option id="thick_grid" value="Thick Grid">Thick Grid</option>
@@ -48,7 +49,7 @@
               <option id="visual_accessibility" value="accessible_on">High contrast</option>
             </select>
 
-            <select name="ss" id="theme_selector" class="theme_selector">
+            <select id="theme_selector" class="theme_selector">
               <option id="theme_system" value="System" selected>System</option>
               <option id="theme_light" value="Light">Light</option>
               <option id="theme_dark" value="Dark">Dark</option>
@@ -57,6 +58,11 @@
               <option id="theme_space" value="Space">Space</option>
               <option id="theme_ocean" value="Ocean">Ocean</option>
             </select>
+
+            <div class="sound_icon">
+              <img src="src/assets/images/volume.svg" alt="" id="volume" class="volume_on">
+            </div>
+            
           </div>
 
 
@@ -70,7 +76,7 @@
       <div class="board_wrapper">
         <div class="board">
 
-          <table>
+          <table id="board_table">
             <tbody id="board">
             </tbody>
           </table>
@@ -98,12 +104,30 @@
 
       </div>
 
+      <div class="game_info_wrapper">
+
+        <div class="game_info">
+          <h2>Queens Game</h2>
+          <h4>Rules</h4>
+          <div>
+            <li>Place one queen in every region of color to win</li>
+            <li>Click on a square to place a queen or remove one</li>
+            <li>Right click to place a marker or remove one</li>
+            <li>Make sure no queens are in the same row or column</li>
+            <li>Queens can be on the same diagonal</li>
+            <li>Queens can't be adyacent to each other</li>
+          </div>
+        </div>
+      </div>
+
     </div>
+
     <script type="module" src="/src/main.ts"></script>
     <script type="module" src="src/scripts/draw_board.js"></script>
     <script type="module" src="src/scripts/game_logic.js"></script>
     <script type="module" src="src/scripts/timer.js"></script>
-    <script src="src/scripts/save_selections.js"></script>
+    <script type="module" src="src/scripts/save_selections.js"></script>
+    <script type="module" src="src/scripts/audio.js"></script>
   </body>
 
 </html>

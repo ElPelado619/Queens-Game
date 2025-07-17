@@ -1,8 +1,15 @@
+.page_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
 body {
     margin-left: auto; 
     margin-right: auto; 
     width: 100%;
-
     background-color: var(--color_bg);
     color: var(--color_text);
 }
@@ -41,13 +48,40 @@ nav {
 }
 
 .logo img {
-    margin-left: 10px;
     width: 40px;
     height: 40px;
     filter: invert(var(--invert_logo));
     -webkit-filter: invert(var(--invert_logo));
     position: absolute;
     top: 0;
+}
+
+.right_nav_items{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.sound_icon img {
+    margin-top: 3px;
+    width: 34px;
+    filter: invert(var(--invert_logo));
+    -webkit-filter: invert(var(--invert_logo));
+    cursor: pointer;
+}
+
+.volume_off{
+    opacity: 30%;
+}
+
+.game_selectors_wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    justify-content: space-between;
 }
 
 select, input, button, .game_selectors {
@@ -61,6 +95,11 @@ select, input, button, .game_selectors {
 
 button, .game_selectors {
     font-size: large;
+}
+
+.game_selectors {
+    text-align: center;
+    min-width: 120px;
 }
 
 input {
@@ -115,9 +154,11 @@ a {
   font-family: monospace;
 }
 
-.game_selectors_wrapper{
-    justify-content: space-around;
+:root:has(option[id="theme_newspaper"]:checked) .timer{
+  filter: grayscale(1);
+  -webkit-filter: grayscale(1);
 }
+
 
 /* Aplicar transición */
 body, nav, input, select, button, 

@@ -3,16 +3,18 @@
 }
 
 .board_wrapper {
+  align-self: center ;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 500px;
 }
 
 table {
   aspect-ratio: 1 / 1;
   width: min(70vw, 70vh);
   max-width: 500px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   background-color: var(--board_outer_colors);
   border-radius: 6px;
 }
@@ -124,10 +126,17 @@ table {
   background-image: url("../images/queen_icon_contrast.svg");
   transition: all 0.2s ease-in-out;
   filter: invert(25%) sepia(20%) saturate(3000%) hue-rotate(-15deg) brightness(0.9) contrast(1.2) drop-shadow(0 0 0.5rem #ff0000);
+  -webkit-filter: invert(25%) sepia(20%) saturate(3000%) hue-rotate(-15deg) brightness(0.9) contrast(1.2) drop-shadow(0 0 0.5rem #ff0000);
 
 }
 
-#board, #board td, #board img, .board td[class*="cell_color_"]  {
+:root:has(option[id="theme_newspaper"]:checked) .icon_queen.invalid_queen{
+  filter: invert(25%) sepia(20%) saturate(3000%) hue-rotate(-15deg) brightness(0.9) contrast(1.2) drop-shadow(0 0 0.5rem #ff0000) grayscale(1);
+  -webkit-filter: invert(25%) sepia(20%) saturate(3000%) hue-rotate(-15deg) brightness(0.9) contrast(1.2) drop-shadow(0 0 0.5rem #ff0000) grayscale(1);
+  transition: none;
+}
+
+#board, #board td, #board img, .board td[class*="cell_color_"], #board table, #board tbody, table{
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -139,10 +148,9 @@ table {
 }
 
 
-
 @keyframes row_glow {
   0%, 100% { filter: brightness(1) hue-rotate(0deg) }
-  50%     { filter: brightness(1.5) hue-rotate(180deg) }
+  50%     { filter: brightness(1.25) hue-rotate(180deg) }
 }
 
 .victory_row {

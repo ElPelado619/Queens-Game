@@ -1,6 +1,7 @@
 :root {
   --inverted_true: 100%;
   --inverted_false: 0%;
+  --timer_victory_color: #00ff00;
 
   /* Webpage elements */
   /*text - bg - nav - input - input_text - nav_text - border*/
@@ -76,6 +77,7 @@
     --color_nav_text: var(--light_nav_text);
     --color_border: var(--light_border);
     --invert_logo: var(--inverted_false);
+    --timer_victory_color: #106110;
   }
 }
 
@@ -90,6 +92,7 @@
     --color_nav_text: var(--dark_nav_text);
     --color_border: var(--dark_border);
     --invert_logo: var(--inverted_true);
+    --timer_victory_color: #61e82c;
   }
 }
 
@@ -103,6 +106,7 @@
   --color_nav_text: var(--light_nav_text);
   --color_border: var(--light_border);
   --invert_logo: var(--inverted_false);
+  --timer_victory_color: #106110;
 }
 
 :root:has(option[id="theme_dark"]:checked) {
@@ -114,6 +118,7 @@
   --color_nav_text: var(--dark_nav_text);
   --color_border: var(--dark_border);
   --invert_logo: var(--inverted_true);
+  --timer_victory_color: #61e82c;
 }
 
 :root:has(option[id="theme_newspaper"]:checked) {
@@ -125,6 +130,7 @@
   --color_nav_text: var(--newspaper_nav_text);
   --color_border: var(--newspaper_border);
   --invert_logo: var(--inverted_false);
+  --timer_victory_color: #106110;
 }
 
 :root:has(option[id="theme_midnight"]:checked) {
@@ -136,17 +142,7 @@
   --color_nav_text: var(--midnight_nav_text);
   --color_border: var(--midnight_border);
   --invert_logo: var(--inverted_true);
-}
-
-:root:has(option[id="theme_ocean"]:checked) {
-  --color_text: var(--ocean_color1);
-  --color_bg: var(--ocean_color2);
-  --color_nav: var(--ocean_color3);
-  --color_input: var(--ocean_color4);
-  --color_input_text: var(--ocean_color5);
-  --color_nav_text: var(--ocean_nav_text);
-  --color_border: var(--ocean_border);
-  --invert_logo: var(--inverted_true);
+  --timer_victory_color: #61e82c;
 }
 
 :root:has(option[id="theme_space"]:checked) {
@@ -158,4 +154,17 @@
   --color_nav_text: var(--space_nav_text);
   --color_border: var(--space_border);
   --invert_logo: var(--inverted_true);
+  --timer_victory_color: #61e82c;
+}
+
+:root:has(option[id="theme_ocean"]:checked) {
+  --color_text: var(--ocean_color1);
+  --color_bg: var(--ocean_color2);
+  --color_nav: var(--ocean_color3);
+  --color_input: var(--ocean_color4);
+  --color_input_text: var(--ocean_color5);
+  --color_nav_text: var(--ocean_nav_text);
+  --color_border: var(--ocean_border);
+  --invert_logo: var(--inverted_true);
+  --timer_victory_color: #61e82c;
 }

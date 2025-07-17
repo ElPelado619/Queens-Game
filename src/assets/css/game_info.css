@@ -1,0 +1,26 @@
+.game_info_wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.game_info {
+    margin-top: 40px;
+    width: 420px;
+    border-radius: 10px;
+    border: 2px solid var(--color_border);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color_nav);
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.game_info h1, .game_info h2, .game_info h3, .game_info h4, .game_info h5, .game_info h6 {
+    text-align: center;
+}
