@@ -3,6 +3,7 @@
   --inverted_false: 0%;
 
   /* Webpage elements */
+  /*text - bg - nav - input - input_text - nav_text - border*/
 
   /* Light */
   --light_color1: #000000;
@@ -40,15 +41,6 @@
   --midnight_border: #1b2433;
   --midnight_nav_text: #eef4ed;
 
-  /* Ocean Theme */
-  --ocean_color1: #ffffff;
-  --ocean_color2: #0d1f34;
-  --ocean_color3: #0d1723;
-  --ocean_color4: #274670;
-  --ocean_color5: #56adff;
-  --ocean_border: #2c3e50;
-  --ocean_nav_text: #ffffff;
-
   /* Space Theme */
   --space_color1: #ffffff;
   --space_color2: #000000;
@@ -57,6 +49,15 @@
   --space_color5: #ffffff;
   --space_border: #202020;
   --space_nav_text: #ffffff;
+
+  /* Ocean Theme */
+  --ocean_color1: #ffffff;
+  --ocean_color2: #0d1f34;
+  --ocean_color3: #152539;
+  --ocean_color4: #274670;
+  --ocean_color5: #56adff;
+  --ocean_border: #2c3e50;
+  --ocean_nav_text: #ffffff;
 }
 
 /* Preferencias del sistema */

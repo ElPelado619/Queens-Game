@@ -37,14 +37,15 @@
           
           <div>
             <select name="gs" id="grid_selector" class="theme_selector">
-              <option id="show_grid" value="Show Grid">Show Grid</option>
-              <option  id="thick_grid" value="Thick Grid">Thick Grid</option>
-              <option id="hide_grid" value="Hide Grid">Hide Grid</option>
+              <option id="thin_grid" value="Thin Grid">Thin Grid</option>
+              <option id="regular_grid" value="Regular Grid">Grid</option>
+              <option id="thick_grid" value="Thick Grid">Thick Grid</option>
+              <option id="hide_grid" value="Hide Grid" selected>Hide Grid</option>
             </select>
 
             <select id="visual_settings" class="theme_selector">
-              <option id="regular_visuals" value="accessible_off" selected>Visual help Off</option>
-              <option id="visual_accessibility" value="accessible_on">Visual help On</option>
+              <option id="regular_visuals" value="accessible_off" selected>Low contrast</option>
+              <option id="visual_accessibility" value="accessible_on">High contrast</option>
             </select>
 
             <select name="ss" id="theme_selector" class="theme_selector">
@@ -71,69 +72,6 @@
 
           <table>
             <tbody id="board">
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
             </tbody>
           </table>
         </div>
@@ -148,8 +86,9 @@
 
           <select name="szs" id="size" class="game_selectors">
             <option value="7" selected>7x7</option>
-            <option value="8" hidden>8x8</option>
-            <option value="9" hidden>9x9</option>
+            <option value="8">8x8</option>
+            <option value="9">9x9</option>
+            <option value="10">10x10</option>
           </select>
 
           <button id="new_game">New Game</button>
@@ -164,6 +103,7 @@
     <script type="module" src="src/scripts/draw_board.js"></script>
     <script type="module" src="src/scripts/game_logic.js"></script>
     <script type="module" src="src/scripts/timer.js"></script>
+    <script src="src/scripts/save_selections.js"></script>
   </body>
 
 </html>

@@ -17,24 +17,6 @@ table {
   border-radius: 6px;
 }
 
-:root:has(option[id="show_grid"]:checked) table{
-  border-collapse: separate;
-  border: 1px solid var(--board_outer_colors);
-  border-spacing: 2px;
-}
-
-:root:has(option[id="thick_grid"]:checked) table{
-  border-collapse: separate;
-  border: 2px solid var(--board_outer_colors);
-  border-spacing: 4px;
-}
-
-:root:has(option[id="hide_grid"]:checked) table{
-  border-collapse: collapse;
-  background-color: #00000000;
-  border: none;
-}
-
 .board table {
   width: 100%;
   height: 100%;
@@ -53,6 +35,35 @@ table {
   border: 0px solid #00000000;
   overflow: hidden;
 }
+
+.board td:hover {
+  filter: brightness(1.2);
+}
+
+:root:has(option[id="thin_grid"]:checked) table{
+  border-collapse: separate;
+  border: 0px solid var(--board_outer_colors);
+  border-spacing: 2px;
+}
+
+:root:has(option[id="regular_grid"]:checked) table{
+  border-collapse: separate;
+  border: 0px solid var(--board_outer_colors);
+  border-spacing: 3.5px;
+}
+
+:root:has(option[id="thick_grid"]:checked) table{
+  border-collapse: separate;
+  border: 0px solid var(--board_outer_colors);
+  border-spacing: 5px;
+}
+
+:root:has(option[id="hide_grid"]:checked) table{
+  border-collapse: collapse;
+  background-color: #00000000;
+  border: none;
+}
+
 
 /* Esquina superior izquierda */
 .board tr:first-child td:first-child {
@@ -75,10 +86,6 @@ table {
 }
 
 
-.board td:hover {
-  filter: brightness(1.2);
-}
-
 .board td.cell_color_1 { background-color: var(--cell_color_1);}
 .board td.cell_color_2 { background-color: var(--cell_color_2);}
 .board td.cell_color_3 { background-color: var(--cell_color_3);}
@@ -90,17 +97,37 @@ table {
 .board td.cell_color_9 { background-color: var(--cell_color_9);}
 .board td.cell_color_10 { background-color: var(--cell_color_10);}
 
+
 .board_icons {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-  margin: auto;
-  padding: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   filter: invert(var(--invert_logo));
 }
 
-#board, #board td, #board img {
+/* Specific icon images */
+.icon_queen {
+  background-image: url("../images/queen_icon.svg");
+}
+
+.icon_cross {
+  background-image: url("../images/cross.svg");
+}
+
+.icon_queen.invalid_queen {
+  background-image: url("../images/queen_icon_contrast.svg");
+  transition: all 0.2s ease-in-out;
+  filter: invert(25%) sepia(20%) saturate(3000%) hue-rotate(-15deg) brightness(0.9) contrast(1.2) drop-shadow(0 0 0.5rem #ff0000);
+
+}
+
+#board, #board td, #board img, .board td[class*="cell_color_"]  {
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -109,5 +136,16 @@ table {
   -khtml-user-drag: none;
   -moz-user-drag: none;
   -o-user-drag: none;
-  user-drag: none
+}
+
+
+
+@keyframes row_glow {
+  0%, 100% { filter: brightness(1) hue-rotate(0deg) }
+  50%     { filter: brightness(1.5) hue-rotate(180deg) }
+}
+
+.victory_row {
+  filter: contrast(0.8);
+  animation: row_glow 4s infinite;
 }

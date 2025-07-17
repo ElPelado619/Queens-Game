@@ -4,9 +4,9 @@ import { start_game } from './game_logic.js';
 let matriz_colores = null;
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const guardado = localStorage.getItem("matriz_colores");
-  if (guardado) {
-    matriz_colores = JSON.parse(guardado);
+  const saved_color_matrix = localStorage.getItem("matriz_colores");
+  if (saved_color_matrix) {
+    matriz_colores = JSON.parse(saved_color_matrix);
     const size = matriz_colores.length;
     draw_board(size, matriz_colores);
     start_game(matriz_colores, false);
@@ -19,7 +19,7 @@ document.getElementById("new_game").addEventListener("click", getNewBoard);
 
 async function getNewBoard() {
   const size = parseInt(document.getElementById('size').value);
-  matriz_colores = await obtenerMatrizAleatoria();
+  matriz_colores = await obtenerMatrizAleatoria(size);
 
   if (matriz_colores) {
     draw_board(size, matriz_colores);
