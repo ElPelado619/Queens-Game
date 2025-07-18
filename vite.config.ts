@@ -2,8 +2,8 @@ import { defineConfig } from 'vite'
 import path from 'path'
 
 export default defineConfig({
-  base: 'https://elpalado619.github.io/Queens-Game/',
-  root: '.',  // Project root (where index.html is)
+  base: 'https://elpelado619.github.io/Queens-Game/',
+  root: '.',
   publicDir: 'public',
   build: {
     outDir: 'dist',

@@ -22,10 +22,11 @@ const volume = {
 
 let muted = false;
 
+const audioBasePath = (import.meta.env.BASE_URL || '/') + 'audio/'; // adapt to development or production
 export function loadSounds() {
-    sounds.place = new Audio('src/assets/audio/place.mp3');
-    sounds.remove = new Audio('src/assets/audio/place.mp3');
-    sounds.win = new Audio('src/assets/audio/win.mp3');
+    sounds.place = new Audio(audioBasePath + 'place.mp3');
+    sounds.remove = new Audio(audioBasePath + 'place.mp3');
+    sounds.win = new Audio(audioBasePath + 'win.mp3');
     
     // Set initial volumes
     sounds.place.volume = volume.place;
@@ -54,7 +55,7 @@ export function playSound(soundName) {
                 console.warn("Audio play failed:", e);
                 // Fallback with all effects
                 try {
-                    const fallback = new Audio(`src/assets/audio/${soundName === 'remove' ? 'place' : soundName}.mp3`);
+                    const fallback = new Audio(`/audio/${soundName === 'remove' ? 'place' : soundName}.mp3`);
                     fallback.currentTime = trimTimes[soundName];
                     fallback.playbackRate = pitchRates[soundName] * speed[soundName];
                     fallback.volume = volume[soundName];
