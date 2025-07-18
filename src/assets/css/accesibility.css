@@ -1,0 +1,48 @@
+:root:has(option#visual_accessibility:checked) .board td[class*="cell_color_"] {
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
+  background-blend-mode: soft-light;
+}
+
+:root:has(option#visual_accessibility:checked) .icon_queen {
+  background-image: url("../images/queen_icon_contrast.svg");
+}
+
+:root:has(option#visual_accessibility:checked) .icon_cross {
+  background-image: url("../images/croos_contrast.svg");
+}
+
+
+/* star */
+:root:has(option#visual_accessibility:checked) .board td.cell_color_1 { background-size: 80%; }
+/* square */
+:root:has(option#visual_accessibility:checked) .board td.cell_color_2 { background-size: 80%; }
+/* triangle */
+:root:has(option#visual_accessibility:checked) .board td.cell_color_3 { background-size: 60%; }
+/* hexagon */
+:root:has(option#visual_accessibility:checked) .board td.cell_color_4 { background-size: 50%; }
+/* circle */
+:root:has(option#visual_accessibility:checked) .board td.cell_color_5 { background-size: 120%; }
+/* diamond */
+:root:has(option#visual_accessibility:checked) .board td.cell_color_6 { background-size: 60%; }
+/* heart */
+:root:has(option#visual_accessibility:checked) .board td.cell_color_7 { background-size: 60%; }
+/* pentagon */
+:root:has(option#visual_accessibility:checked) .board td.cell_color_8 { background-size: 70%; }
+/* 16star */
+:root:has(option#visual_accessibility:checked) .board td.cell_color_9 { background-size: 60%; }
+/* arrow */
+:root:has(option#visual_accessibility:checked) .board td.cell_color_10 { background-size: 50%; }
+
+
+:root:has(option#visual_accessibility:checked) .board td.cell_color_1  { background-image: url("../images/accesibility/black_icons/star.svg"); }
+:root:has(option#visual_accessibility:checked) .board td.cell_color_2  { background-image: url("../images/accesibility/black_icons/square.svg"); }
+:root:has(option#visual_accessibility:checked) .board td.cell_color_3  { background-image: url("../images/accesibility/black_icons/triangle.svg"); }
+:root:has(option#visual_accessibility:checked) .board td.cell_color_4  { background-image: url("../images/accesibility/black_icons/hexagon.svg"); }
+:root:has(option#visual_accessibility:checked) .board td.cell_color_5  { background-image: url("../images/accesibility/black_icons/circle.svg"); }
+:root:has(option#visual_accessibility:checked) .board td.cell_color_6  { background-image: url("../images/accesibility/black_icons/diamond.svg"); }
+:root:has(option#visual_accessibility:checked) .board td.cell_color_7  { background-image: url("../images/accesibility/black_icons/heart.svg"); }
+:root:has(option#visual_accessibility:checked) .board td.cell_color_8  { background-image: url("../images/accesibility/black_icons/pentagon.svg"); }
+:root:has(option#visual_accessibility:checked) .board td.cell_color_9  { background-image: url("../images/accesibility/black_icons/16star.svg"); }
+:root:has(option#visual_accessibility:checked) .board td.cell_color_10 { background-image: url("../images/accesibility/black_icons/arrow.svg"); }

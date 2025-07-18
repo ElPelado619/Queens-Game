@@ -1,0 +1,186 @@
+.page_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+body {
+    margin-left: auto; 
+    margin-right: auto; 
+    width: 100%;
+    background-color: var(--color_bg);
+    color: var(--color_text);
+}
+
+.nav_wrap {
+    position: fixed;
+    top : 0;
+    height: 50px;
+    z-index: 200;
+    width: 100%;
+    display: flex;
+    justify-content: space-between
+}
+
+.nav_bar {
+    background-color: var(--color_nav);
+    color: var(--color_nav_text);
+    border-bottom: 2px solid var(--color_border);
+}
+
+nav {
+    width: 100%;
+    height: 100%;
+    margin-left: 40px;
+    margin-right: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    vertical-align: middle;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+    filter: invert(var(--invert_logo));
+    -webkit-filter: invert(var(--invert_logo));
+    position: absolute;
+    top: 0;
+}
+
+.right_nav_items{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.sound_icon img {
+    margin-top: 3px;
+    width: 34px;
+    filter: invert(var(--invert_logo));
+    -webkit-filter: invert(var(--invert_logo));
+    cursor: pointer;
+}
+
+.volume_off{
+    opacity: 30%;
+}
+
+.game_selectors_wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+select, input, button, .game_selectors {
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: var(--color_input);
+    color: var(--color_input_text);
+    border: 1px solid #00000000;
+}
+
+button, .game_selectors {
+    font-size: large;
+}
+
+.game_selectors {
+    text-align: center;
+    min-width: 120px;
+}
+
+input {
+    background-color: var(--color_input);
+    color: var(--color_input_text);
+    border: 1px solid var(--color_nav);
+}
+
+input[type="submit"] {
+    background-color: var(--color_nav);
+    color: var(--color_text);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: var(--color_input);
+    color: var(--color_nav);
+}
+
+input:hover, button:hover, .game_selectors:hover {
+    border: 1px solid var(--color_input_text);
+}
+
+input:active, button:active, .game_selectors:active {
+    border: 1px solid var(--color_bg);
+}
+
+.theme_selector {
+    background-color: var(--color_bg);
+    color: var(--color_input_text);
+    border: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--color_text);
+}
+
+a {
+    color: var(--color_nav_text);
+    text-decoration: none;
+}
+
+.timer {
+    text-align: center;
+    margin-top: 60px;
+    filter: contrast(80%);
+}
+
+.timer h1 {
+  font-family: monospace;
+}
+
+:root:has(option[id="theme_newspaper"]:checked) .board_wrapper{
+  filter: grayscale(1) contrast(120%) brightness(0.8);
+  -webkit-filter: grayscale(1) contrast(120%) brightness(0.8);
+
+}
+
+
+body, nav, input, select, button, 
+a, h1, h2, h3, h4, h5, h6, option, 
+.nav_wrap, .board, td, table, .board_wrapper, 
+.game_selectors_wrapper, .queen_piece, .board, .board_icons,
+.board td[class*="cell_color_"]
+{
+  -webkit-transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  -moz-transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.icon {
+  fill: black;
+}
+
+@media (prefers-color-scheme: dark) {
+  icon {
+    fill: white;
+  }
+}

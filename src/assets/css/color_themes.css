@@ -1,0 +1,170 @@
+:root {
+  --inverted_true: 100%;
+  --inverted_false: 0%;
+  --timer_victory_color: #00ff00;
+
+  /* Webpage elements */
+  /*text - bg - nav - input - input_text - nav_text - border*/
+
+  /* Light */
+  --light_color1: #000000;
+  --light_color2: #ffffff;
+  --light_color3: #f0f0f0;
+  --light_color4: #c9c9c9;
+  --light_color5: #000000;
+  --light_border: #cbcbcb;
+  --light_nav_text: #000000;
+
+  /* Dark */
+  --dark_color1: #e0e0e0;
+  --dark_color2: #121212;
+  --dark_color3: #1f1f1f;
+  --dark_color4: #2c2c2c;
+  --dark_color5: #bbbbbb;
+  --dark_border: #333333;
+  --dark_nav_text: #e0e0e0;
+
+  /* Newspaper Theme */
+  --newspaper_color1: #000000;
+  --newspaper_color2: #a3a3a3;
+  --newspaper_color3: #8d8d8d;
+  --newspaper_color4: #888888;
+  --newspaper_color5: #1a1a1a;
+  --newspaper_border: #585858;
+  --newspaper_nav_text: #2a2a2a;
+
+  /* Midnight Theme */
+  --midnight_color1: #eef4ed;
+  --midnight_color2: #0a131e;
+  --midnight_color3: #070a12;
+  --midnight_color4: #202d3d;
+  --midnight_color5: #4c77b0;
+  --midnight_border: #1b2433;
+  --midnight_nav_text: #eef4ed;
+
+  /* Space Theme */
+  --space_color1: #ffffff;
+  --space_color2: #000000;
+  --space_color3: #0d0d0d;
+  --space_color4: #2f3236;
+  --space_color5: #ffffff;
+  --space_border: #202020;
+  --space_nav_text: #ffffff;
+
+  /* Ocean Theme */
+  --ocean_color1: #ffffff;
+  --ocean_color2: #0f243b;
+  --ocean_color3: #111e2f;
+  --ocean_color4: #274670;
+  --ocean_color5: #56adff;
+  --ocean_border: #2c3e50;
+  --ocean_nav_text: #ffffff;
+}
+
+
+:root:has(option[id="theme_system"]:checked) {
+  color-scheme: light dark;
+}
+
+/* Light */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color_text: var(--light_color1);
+    --color_bg: var(--light_color2);
+    --color_nav: var(--light_color3);
+    --color_input: var(--light_color4);
+    --color_input_text: var(--light_color5);
+    --color_nav_text: var(--light_nav_text);
+    --color_border: var(--light_border);
+    --invert_logo: var(--inverted_false);
+    --timer_victory_color: #106110;
+  }
+}
+
+/* Dark */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color_text: var(--dark_color1);
+    --color_bg: var(--dark_color2);
+    --color_nav: var(--dark_color3);
+    --color_input: var(--dark_color4);
+    --color_input_text: var(--dark_color5);
+    --color_nav_text: var(--dark_nav_text);
+    --color_border: var(--dark_border);
+    --invert_logo: var(--inverted_true);
+    --timer_victory_color: #61e82c;
+  }
+}
+
+/* Manual */
+:root:has(option[id="theme_light"]:checked) {
+  --color_text: var(--light_color1);
+  --color_bg: var(--light_color2);
+  --color_nav: var(--light_color3);
+  --color_input: var(--light_color4);
+  --color_input_text: var(--light_color5);
+  --color_nav_text: var(--light_nav_text);
+  --color_border: var(--light_border);
+  --invert_logo: var(--inverted_false);
+  --timer_victory_color: #106110;
+}
+
+:root:has(option[id="theme_dark"]:checked) {
+  --color_text: var(--dark_color1);
+  --color_bg: var(--dark_color2);
+  --color_nav: var(--dark_color3);
+  --color_input: var(--dark_color4);
+  --color_input_text: var(--dark_color5);
+  --color_nav_text: var(--dark_nav_text);
+  --color_border: var(--dark_border);
+  --invert_logo: var(--inverted_true);
+  --timer_victory_color: #61e82c;
+}
+
+:root:has(option[id="theme_newspaper"]:checked) {
+  --color_text: var(--newspaper_color1);
+  --color_bg: var(--newspaper_color2);
+  --color_nav: var(--newspaper_color3);
+  --color_input: var(--newspaper_color4);
+  --color_input_text: var(--newspaper_color5);
+  --color_nav_text: var(--newspaper_nav_text);
+  --color_border: var(--newspaper_border);
+  --invert_logo: var(--inverted_false);
+  --timer_victory_color: #106110;
+}
+
+:root:has(option[id="theme_midnight"]:checked) {
+  --color_text: var(--midnight_color1);
+  --color_bg: var(--midnight_color2);
+  --color_nav: var(--midnight_color3);
+  --color_input: var(--midnight_color4);
+  --color_input_text: var(--midnight_color5);
+  --color_nav_text: var(--midnight_nav_text);
+  --color_border: var(--midnight_border);
+  --invert_logo: var(--inverted_true);
+  --timer_victory_color: #61e82c;
+}
+
+:root:has(option[id="theme_space"]:checked) {
+  --color_text: var(--space_color1);
+  --color_bg: var(--space_color2);
+  --color_nav: var(--space_color3);
+  --color_input: var(--space_color4);
+  --color_input_text: var(--space_color5);
+  --color_nav_text: var(--space_nav_text);
+  --color_border: var(--space_border);
+  --invert_logo: var(--inverted_true);
+  --timer_victory_color: #61e82c;
+}
+
+:root:has(option[id="theme_ocean"]:checked) {
+  --color_text: var(--ocean_color1);
+  --color_bg: var(--ocean_color2);
+  --color_nav: var(--ocean_color3);
+  --color_input: var(--ocean_color4);
+  --color_input_text: var(--ocean_color5);
+  --color_nav_text: var(--ocean_nav_text);
+  --color_border: var(--ocean_border);
+  --invert_logo: var(--inverted_true);
+  --timer_victory_color: #61e82c;
+}
