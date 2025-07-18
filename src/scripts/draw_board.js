@@ -19,16 +19,19 @@ document.getElementById("new_game").addEventListener("click", getNewBoard);
 
 async function getNewBoard() {
   const size = parseInt(document.getElementById('size').value);
+  //const difficulty = document.getElementById('difficulty').value;
+
   colors_matrix = await getRandomMatrix(size);
 
   if (colors_matrix) {
     draw_board(size, colors_matrix);
-    start_game(colors_matrix, true); //2nd parameter is to force new game
+    start_game(colors_matrix, true);
     localStorage.setItem("colors_matrix", JSON.stringify(colors_matrix));
   } else {
-    alert('Could not load the board');
+    alert('No boards available for this size and difficulty.');
   }
 }
+
 
 function draw_board(size, matriz) {
   const board = document.getElementById('board');
