@@ -88,7 +88,7 @@ export async function start_game(nueva_matriz, force_new_game) {
   }
 
   render_board();
-  agregar_listeners_drag();
+  add_drag_listeners();
 
   if (!gameCompleted) {
     startTimer(new_game_flag && !gameCompleted);
@@ -159,7 +159,7 @@ function edit_cell(row, col, type) {
   check_win_condition();
 }
 
-function agregar_listeners_drag() {
+function add_drag_listeners() {
   for (let row = 0; row < size; row++) {
     for (let col = 0; col < size; col++) {
       const cell = document.getElementById(`cell_${row}_${col}`);
