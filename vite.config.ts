@@ -3,23 +3,18 @@ import path from 'path'
 
 export default defineConfig({
   base: 'https://elpalado619.github.io/Queens-Game/',
-  root: '.',
+  root: '.',  // Project root (where index.html is)
   publicDir: 'public',
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
-      '~': path.resolve(__dirname, './')
-    }
-  },
   build: {
     outDir: 'dist',
     emptyOutDir: true,
-    rollupOptions: {
-      input: path.resolve(__dirname, 'index.html')  // Points to root index.html
-    }
   },
   server: {
     port: 3000,
-    open: true
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    }
   }
 })

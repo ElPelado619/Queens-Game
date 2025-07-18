@@ -10,7 +10,6 @@
       "~/*": ["./*"]
     },
     "types": ["node", "vite/client"],
-    "outDir": "./dist",
     "skipLibCheck": true,
     "noEmit": true,
     "esModuleInterop": true,
