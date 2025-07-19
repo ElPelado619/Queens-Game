@@ -15,8 +15,8 @@
 using namespace std;
 using namespace std::chrono;
 
-constexpr int MAX_BOARDS_PER_FILE = 5000;
-constexpr int MAX_ATTEMPTS = 1000000;
+constexpr int MAX_BOARDS_PER_FILE = 5;
+constexpr int MAX_ATTEMPTS = 10000000;
 int N = 10;
 int unique_id = 1;
 mutex file_mutex;
