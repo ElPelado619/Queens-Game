@@ -15,8 +15,11 @@
 using namespace std;
 using namespace std::chrono;
 
-constexpr int MAX_BOARDS_PER_FILE = 5;
-constexpr int MAX_ATTEMPTS = 10000000;
+//cuidado, esta constante con un valor muy bajo podría generar demasiados archivos (especialmente con tableros de tamaño chico)
+
+constexpr int MAX_BOARDS_PER_FILE = 1; //recomendado dejar en uno para generar tableros 10x10
+
+constexpr int MAX_ATTEMPTS = 5000000;
 int N = 10;
 int unique_id = 1;
 mutex file_mutex;
