@@ -19,9 +19,9 @@ document.getElementById("new_game").addEventListener("click", getNewBoard);
 
 async function getNewBoard() {
   const size = parseInt(document.getElementById('size').value);
-  //const difficulty = document.getElementById('difficulty').value;
+  const difficulty = document.getElementById('difficulty').value;
 
-  colors_matrix = await getRandomMatrix(size);
+  colors_matrix = await getRandomMatrix(size, difficulty);
 
   if (colors_matrix) {
     draw_board(size, colors_matrix);

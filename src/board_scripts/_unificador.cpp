@@ -57,7 +57,7 @@ string normalize_board(const string& board_content) {
 }
 
 int main() {
-    string input_dir = "./unificar";
+    string input_dir = "./unificar_input";
     string output_file = "./boards10.js";
 
     DIR* dir = opendir(input_dir.c_str());

@@ -1,11 +1,15 @@
-const boardModules = import.meta.glob('./boards*.js');
+const boardModules = import.meta.glob(['./boards*.js', './chaosBoards*.js']);
 
-export async function getRandomMatrix(size) {
-  const modulePath = `./boards${size}.js`;
+export async function getRandomMatrix(size, difficulty) {
+  let modulePath = `./boards${size}.js`;
+  if (difficulty === "chaos") {
+    modulePath = `./chaosBoards${size}.js`;
+  }
+
   const loader = boardModules[modulePath];
 
   if (!loader) {
-    console.error(`No board file found for size ${size}`);
+    console.error(`No board file found for path: ${modulePath}`);
     return null;
   }
 
@@ -13,7 +17,7 @@ export async function getRandomMatrix(size) {
   const boardsObj = module[`boards${size}`];
 
   if (!boardsObj) {
-    console.error(`No boards object named boards${size} in module`);
+    console.error(`No boards object named boards${size} in ${modulePath}`);
     return null;
   }
 

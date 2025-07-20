@@ -11,6 +11,9 @@ let mouseButton = null;
 let lastEdited = new Set();
 let lastEditedTimeout = null;
 let isInitialClick = true; // Track initial clicks for sound control
+let rightClickStartedInBoard = false;
+let rightClickMode = null; //'draw' or 'erase'
+
 
 window.addEventListener('blur', () => {
   mouseIsDown = false;
@@ -25,19 +28,46 @@ document.addEventListener('mousedown', (e) => {
   mouseIsDown = true;
   mouseButton = e.button;
   lastEdited.clear();
-  isInitialClick = true; // This is a new click operation
+  isInitialClick = true;
 
   if (e.target.closest('td')) {
     const cell = e.target.closest('td');
     const [_, row, col] = cell.id.split('_').map(Number);
+
+    if (mouseButton === 2) {
+      rightClickStartedInBoard = true;
+      rightClickMode = 'draw';  
+
+      if (queens_matrix[row] && queens_matrix[row][col] === 2) {
+        rightClickMode = 'erase';
+      } else {
+        rightClickMode = 'draw';
+      }
+
+    }
     edit_cell(row, col, mouseButton === 0 ? 1 : 2);
+
+  } else {
+    if (mouseButton === 2) {
+      rightClickStartedInBoard = false;
+    }
   }
 });
+
+// Prevents context menu from appearing while dragging from inside the board to outside it
+document.addEventListener('contextmenu', (e) => {
+  if (rightClickStartedInBoard) {
+    e.preventDefault();
+  }
+  rightClickStartedInBoard = false;
+});
+
 
 document.addEventListener('mouseup', (e) => {
   if (e.button === mouseButton) {
     mouseIsDown = false;
     mouseButton = null;
+    rightClickMode = null;
     lastEditedTimeout = setTimeout(() => lastEdited.clear(), 50);
   }
 });
@@ -170,7 +200,16 @@ function add_drag_listeners() {
 
       newCell.addEventListener('mouseenter', () => {
         if (mouseIsDown && !gameCompleted) {
-          edit_cell(row, col, mouseButton === 2 ? 2 : 1);
+          if (mouseButton === 2) {
+            const currentValue = queens_matrix[row][col];
+            if (rightClickMode === 'draw' && currentValue !== 2) {
+              edit_cell(row, col, 2); // Draw cross
+            } else if (rightClickMode === 'erase' && currentValue === 2) {
+              edit_cell(row, col, 2); // Erase cross
+            }
+          } else {
+            edit_cell(row, col, 1);
+          }
         }
       });
 
