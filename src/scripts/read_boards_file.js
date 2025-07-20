@@ -1,13 +1,13 @@
 export async function getRandomMatrix(size) {
   try {
-
     let modulePath;
+
     switch (size) {
-      case 6: modulePath = '/assets/boards6.js'; break;
-      case 7: modulePath = '/assets/boards7.js'; break;
-      case 8: modulePath = '/assets/boards8.js'; break;
-      case 9: modulePath = '/assets/boards9.js'; break;
-      case 10: modulePath = '/assets/boards10.js'; break;
+      case 6: modulePath = './boards6.js'; break;
+      case 7: modulePath = './boards7.js'; break;
+      case 8: modulePath = './boards8.js'; break;
+      case 9: modulePath = './boards9.js'; break;
+      case 10: modulePath = './boards10.js'; break;
       default: throw new Error("Invalid board size: " + size);
     }
 
