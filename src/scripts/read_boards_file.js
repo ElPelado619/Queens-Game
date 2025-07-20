@@ -1,26 +1,32 @@
 export async function getRandomMatrix(size) {
   try {
-    const basePath = (import.meta.env.BASE_URL || '/') + 'boards/';
-    let fileName;
+    let modulePath;
 
     switch (size) {
-      case 7: fileName = 'boards7.txt'; break;
-      case 8: fileName = 'boards8.txt'; break;
-      case 9: fileName = 'boards9.txt'; break;
-      case 10: fileName = 'boards10.txt'; break;
+      case 6: modulePath = './boards6.js'; break;
+      case 7: modulePath = './boards7.js'; break;
+      case 8: modulePath = './boards8.js'; break;
+      case 9: modulePath = './boards9.js'; break;
+      case 10: modulePath = './boards10.js'; break;
       default: throw new Error("Invalid board size: " + size);
     }
 
-    const response = await fetch(basePath + fileName);
-    if (!response.ok) throw new Error(`Failed to load ${fileName}`);
-    
-    const text = await response.text();
-    const lines = text.trim().split('\n').filter(line => line.trim());
-    const randomLine = lines[Math.floor(Math.random() * lines.length)];
-    
-    return JSON.parse(randomLine);
+    const boardsModule = await import(modulePath);
+
+    const exportName = `boards${size}`;
+    const boardsObj = boardsModule[exportName];
+    if (!boardsObj) throw new Error(`Exported object ${exportName} not found in ${modulePath}`);
+
+    const boardList = Object.values(boardsObj);
+    if (boardList.length === 0) throw new Error(`No boards found in ${modulePath}`);
+
+    const randomIndex = Math.floor(Math.random() * boardList.length);
+    const chosenBoard = boardList[randomIndex];
+
+    return chosenBoard;
+
   } catch (error) {
     console.error('Board loading error:', error);
-    return null; // or return a default board
+    return null;
   }
 }

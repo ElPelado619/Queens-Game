@@ -17,7 +17,7 @@ function load_selections() {
             d.getElementById("grid_selector").value = stored_selections.grid;
             d.getElementById("visual_settings").value = stored_selections.visual_help;
             d.getElementById("theme_selector").value = stored_selections.theme;
-            d.getElementById("dificulty").value = stored_selections.difficulty;
+            d.getElementById("difficulty").value = stored_selections.difficulty;
             d.getElementById("size").value = stored_selections.size;
         } catch (e) {
             console.warn("Error parsing stored selections", e);
@@ -29,7 +29,7 @@ function store_selections() {
     stored_selections.grid = d.getElementById("grid_selector").value;
     stored_selections.visual_help = d.getElementById("visual_settings").value;
     stored_selections.theme = d.getElementById("theme_selector").value;
-    stored_selections.difficulty = d.getElementById("dificulty").value;
+    stored_selections.difficulty = d.getElementById("difficulty").value;
     stored_selections.size = d.getElementById("size").value;
 
     localStorage.setItem("stored_selections", JSON.stringify(stored_selections));
@@ -42,5 +42,5 @@ window.addEventListener('beforeunload', store_selections);
 d.getElementById("grid_selector").addEventListener("change", store_selections);
 d.getElementById("visual_settings").addEventListener("change", store_selections);
 d.getElementById("theme_selector").addEventListener("change", store_selections);
-d.getElementById("dificulty").addEventListener("change", store_selections);
+d.getElementById("difficulty").addEventListener("change", store_selections);
 d.getElementById("size").addEventListener("change", store_selections);
