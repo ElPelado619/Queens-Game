@@ -113,9 +113,6 @@ def findSolutions(regionBoard, queensBoard, row):
     solutionsCount = 0
 
     if row >= len(regionBoard):
-        print("Found a solution:")
-        printBoard(queensBoard)
-        print()
         return 1
 
     validPlacements = [col for col in range(
@@ -191,7 +188,6 @@ def createRegions(board):
         # ERROR: If neighborDomain is empty, it means no valid colors are available for the neighbor cell
         # This can happen if all possible colors have been used up or if the neighbor cell is already painted
         if neighborDomain == [] and board[rowNeighbor][colNeighbor] == 0:
-            print(f"Error: No valid colors for neighbor cell ({rowNeighbor}, {colNeighbor})")
             return None
 
         randomColor = board[rowRandom][colRandom]
@@ -220,14 +216,7 @@ def createRegions(board):
             domainMap[(rowNeighbor, colNeighbor)] = [
                 val for val in domainMap[(rowNeighbor, colNeighbor)]
                 if val in neighboringValues
-            ]
-            print(f"Updated domain for ({rowNeighbor}, {colNeighbor}): {domainMap[(rowNeighbor, colNeighbor)]}")
-            
-
-        print(
-            f"Current board state after processing ({rowRandom}, {colRandom}):")
-        printBoard(board)
-        print("-"*20)
+            ]                
 
     return board
 
@@ -243,14 +232,7 @@ def createBoard(size):
         board = [[0 for _ in range(BOARD_SIZE)] for _ in range(BOARD_SIZE)]
         board = placeInitialQueens(board, row=0)
         
-        print("Initial board with queens placed:\n")
-        printBoard(board)
-        print("\nCreating regions...\n")
-        
         finalBoard = createRegions(board)
-
-    print("Board after creating regions:\n")
-    printBoard(board)
 
     return board
 
@@ -259,7 +241,8 @@ if __name__ == "__main__":
 
     # Options: "TestOneBoard", "TestFindSolutions", or "GenerateBoards"
     LAUNCH_OPTION = "GenerateBoards"  # Change this to test different functionalities
-    SIZE = 7  # Default size for the board
+    SIZE = 8  # Default size for the board
+    TOTAL_BOARDS = 10  # Number of boards to generate if LAUNCH_OPTION is "GenerateBoards"
 
     if LAUNCH_OPTION == "TestOneBoard":
         board = createBoard(size=SIZE)
@@ -281,15 +264,16 @@ if __name__ == "__main__":
         # Generate multiple boards for testing
 
         boards = []
-        for _ in range(50):
+        for i in range(TOTAL_BOARDS):
             board = createBoard(size=SIZE)
             boards.append(board)
+            print(f"({i+1}/{TOTAL_BOARDS}) Board generated.")
 
         counter = 0
 
         # Write boards to boards6.js in the same format as boards6.js
         with open(f"boards{SIZE}.js", "w") as f:
-            f.write("export const boards"+SIZE+"= {\n")
+            f.write("export const boards"+str(SIZE)+"= {\n")
             for board in boards:
                 counter += 1
                 f.write(f"  board_{counter}: [\n")
