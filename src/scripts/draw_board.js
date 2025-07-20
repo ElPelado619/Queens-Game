@@ -28,7 +28,7 @@ async function getNewBoard() {
     start_game(colors_matrix, true);
     localStorage.setItem("colors_matrix", JSON.stringify(colors_matrix));
   } else {
-    alert('No boards available for this size and difficulty.');
+    alert('Couldn\'t get a new board');
   }
 }
 
