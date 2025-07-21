@@ -50,10 +50,11 @@
                   <div class="game_info">
                     
                     <h4>Rules</h4>
-                    <div style="font-size: 0.95rem;">
+                    <div style="font-size: 0.9rem;">
                       <li>Place one queen in every region of color to win.</li><br>
                       <li>Click on a square to place a queen or remove one.</li><br>
-                      <li>Right click to place markers or to remove them. You can also change the marker's look by clicking on it again.</li><br>
+                      <li>Right click to place markers or to remove them.</li><br>
+                      <li>You can toggle between crosses or flags by pressing the button below the board, or by pressing the spacebar.</li><br>
                       <li>You can drag the mouse to draw on the board.</li><br>
                       <li>Make sure no queens are in the same row or column.</li><br>
                       <li>Queens can be on the same diagonal but not adyacent to each other.</li>
@@ -131,7 +132,7 @@
               </div>
               <button id="new_game">New Random Board</button>
               <hr class="divider">
-              <input type="number" id="board_number" min="0" max="999999999" step="1" placeholder="insert number">
+              <input type="number" id="board_number" min="1" max="999999999" step="1" placeholder="insert number">
               <button id="load_by_number">Load a board by number</button>
             </div>
             
@@ -158,6 +159,7 @@
             <button id="clear_board">Clean up board</button>
             <button id="clear_crosses">Clean up crosses</button>
             <button id="clear_flags">Clean up flags</button>
+            <button id="switch_marker" class="switch_marker"><img src="src/assets/images/cross.svg" class="switch_marker_image cross" alt="Change marker button"></button>
           </div>
         </div>
 

@@ -2,7 +2,7 @@ import { startTimer, stopTimer, getCurrentTime } from './timer.js';
 import { playSound } from './audio.js';
 
 let queens_matrix = [];
-let colors_matrix = [];
+let colors_matrix = null;
 let size = null;
 let gameCompleted = false;
 
@@ -10,11 +10,11 @@ let mouseIsDown = false;
 let mouseButton = null;
 let lastEdited = new Set();
 let lastEditedTimeout = null;
-let isInitialClick = true;
+let isInitialClick = true; // Track initial clicks for sound control
 let rightClickStartedInBoard = false;
-let rightClickMode = null; // 'draw', 'erase_flags', or 'erase_crosses'
+let rightClickMode = null; //'draw' or 'erase'
 
-let marker_type = "cross"; // 'cross' or 'flag'
+let marker_type = "cross" //cross, flag
 
 document.getElementById("switch_marker").addEventListener("click", change_marker_type);
 
@@ -28,10 +28,11 @@ function change_marker_type() {
   const marker_button = document.getElementById("switch_marker");
   if (marker_type === "cross") {
     marker_type = "flag";
-    marker_button.innerHTML = '<img src="src/assets/images/flag.svg" class="switch_marker_image flag" alt="Change marker button"></img>';
-  } else {
+    marker_button.innerHTML = '<img src="src/assets/images/flag.svg" class="switch_marker_image flag" alt="Change marker button"></img>'
+  }
+  else {
     marker_type = "cross";
-    marker_button.innerHTML = '<img src="src/assets/images/cross.svg" class="switch_marker_image cross" alt="Change marker button"></img>';
+    marker_button.innerHTML = '<img src="src/assets/images/cross.svg" class="switch_marker_image cross" alt="Change marker button"></img>'
   }
 }
 
@@ -59,20 +60,25 @@ document.addEventListener('mousedown', (e) => {
 
       if (mouseButton === 2) {
         rightClickStartedInBoard = true;
-        const currentValue = queens_matrix[row] ? queens_matrix[row][col] : undefined; 
-        rightClickMode = currentValue === 3 ? 'erase_flags' : currentValue === 2 ? 'erase_crosses' : 'draw';
+        rightClickMode = queens_matrix[row] && queens_matrix[row][col] === 2 ? 'erase' : 'draw';
       }
       edit_cell(row, col, mouseButton === 0 ? 1 : 2);
+    }
+  } else {
+    if (mouseButton === 2) {
+      rightClickStartedInBoard = false;
     }
   }
 });
 
+// Prevents context menu from appearing while dragging from inside the board to outside it
 document.addEventListener('contextmenu', (e) => {
   if (rightClickStartedInBoard) {
     e.preventDefault();
   }
   rightClickStartedInBoard = false;
 });
+
 
 document.addEventListener('mouseup', (e) => {
   if (e.button === mouseButton) {
@@ -185,6 +191,7 @@ function edit_cell(row, col, type) {
   const previousValue = queens_matrix[row][col];
   
   if (type === 1) {
+
     const wasQueen = queens_matrix[row][col] === 1;
     queens_matrix[row][col] = wasQueen ? 0 : 1;
 
@@ -199,6 +206,7 @@ function edit_cell(row, col, type) {
     const desiredValue = marker_type === "flag" ? 3 : 2;
     queens_matrix[row][col] = (queens_matrix[row][col] === desiredValue) ? 0 : desiredValue;
   }
+
 
   isInitialClick = false;
   render_icon(row, col);
@@ -218,22 +226,21 @@ function add_drag_listeners() {
       newCell.addEventListener('mouseenter', () => {
         if (mouseIsDown && !gameCompleted) {
           if (mouseButton === 2) {
-            if (rightClickMode === 'draw') {
-              const desiredValue = marker_type === "flag" ? 3 : 2;
-              if (queens_matrix[row][col] !== desiredValue) {
-                edit_cell(row, col, 2);
-              }
-            } 
-            else if (rightClickMode === 'erase_flags' && queens_matrix[row][col] === 3) {
+            const currentValue = queens_matrix[row][col];
+          if (rightClickMode === 'draw') {
+            const desiredValue = marker_type === "flag" ? 3 : 2;
+            if (currentValue !== desiredValue) {
+              edit_cell(row, col, 2);
+            }
+          } else if (rightClickMode === 'erase') {
+            const isMarker = currentValue === 2 || currentValue === 3;
+            if (isMarker) {
               queens_matrix[row][col] = 0;
               render_icon(row, col);
               localStorage.setItem("queens_matrix", JSON.stringify(queens_matrix));
             }
-            else if (rightClickMode === 'erase_crosses' && queens_matrix[row][col] === 2) {
-              queens_matrix[row][col] = 0;
-              render_icon(row, col);
-              localStorage.setItem("queens_matrix", JSON.stringify(queens_matrix));
-            }
+          }
+
           } else {
             edit_cell(row, col, 1);
           }
@@ -242,7 +249,7 @@ function add_drag_listeners() {
 
       newCell.addEventListener('click', (e) => {
         if (e.button === 0 && !gameCompleted) {
-          isInitialClick = true;
+          isInitialClick = true; // Force sound for click
           edit_cell(row, col, 1);
         }
       });
@@ -250,7 +257,7 @@ function add_drag_listeners() {
       newCell.addEventListener('contextmenu', (e) => {
         e.preventDefault();
         if (!gameCompleted) {
-          isInitialClick = true;
+          isInitialClick = true; // Force sound for right-click
           edit_cell(row, col, 2);
         }
       });
@@ -264,7 +271,7 @@ function empty_board(type) {
   if (type === "crosses") {
     for (let row = 0; row < size; row++) {
       for (let col = 0; col < size; col++) {
-        if(queens_matrix[row][col] === 2) {
+        if(queens_matrix[row][col] === 2){
           queens_matrix[row][col] = 0;
           const cell = document.getElementById(`cell_${row}_${col}`);
           if (cell) cell.innerHTML = '';
@@ -275,7 +282,7 @@ function empty_board(type) {
   else if (type === "flags") {
     for (let row = 0; row < size; row++) {
       for (let col = 0; col < size; col++) {
-        if(queens_matrix[row][col] === 3) {
+        if(queens_matrix[row][col] === 3){
           queens_matrix[row][col] = 0;
           const cell = document.getElementById(`cell_${row}_${col}`);
           if (cell) cell.innerHTML = '';
@@ -296,6 +303,7 @@ function empty_board(type) {
       }
     }
   }
+
 }
 
 function valid_coords(row, col) {
@@ -305,14 +313,14 @@ function valid_coords(row, col) {
 export function cell_clicked(cell_id) {
   if (gameCompleted) return;
   const [_, row, col] = cell_id.split('_').map(Number);
-  isInitialClick = true;
+  isInitialClick = true; // Ensure sound plays
   edit_cell(row, col, 1);
 }
 
 export function cell_right_clicked(cell_id) {
   if (gameCompleted) return;
   const [_, row, col] = cell_id.split('_').map(Number);
-  isInitialClick = true;
+  isInitialClick = true; // Ensure sound plays
   edit_cell(row, col, 2);
 }
 

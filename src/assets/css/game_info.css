@@ -17,31 +17,31 @@
 }
 
 .question_mark {
-    margin-top: 3px;
-    width: 24px;
-    filter: invert(var(--invert_logo));
-    -webkit-filter: invert(var(--invert_logo));
-    cursor: pointer;
+  margin-top: 3px;
+  width: 24px;
+  filter: invert(var(--invert_logo));
+  -webkit-filter: invert(var(--invert_logo));
+  cursor: pointer;
 }
 
 .game_info_wrapper{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .game_info {
-    width: 300px;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--color_nav);
-    padding: 10px;
-    justify-content: space-between;
-    align-items: center;
+  width: 300px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color_nav);
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .game_info h1, .game_info h2, .game_info h3, .game_info h4, .game_info h5, .game_info h6 {
-    text-align: center;
+  text-align: center;
 }

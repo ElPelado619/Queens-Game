@@ -157,8 +157,9 @@ button, .game_selectors, input{
 }
 
 .game_selectors_wrapper button, .game_selectors_wrapper.game_selectors, .game_selectors_wrapper.input{
-    width: 160px;
+    width: 140px;
     height: 60px;
+    font-size: medium;
 }
 
 button, .game_selectors, input{
@@ -201,6 +202,33 @@ input:hover, button:hover, .game_selectors:hover {
 
 input:active, button:active, .game_selectors:active {
     border: 1px solid var(--color_bg);
+}
+
+input.disabled, button.disabled, .game_selectors.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+button.switch_marker{
+  cursor: pointer;
+  height: 60px;
+  width: 60px;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  display: flex
+}
+
+.switch_marker_image.flag{
+    filter: invert(var(--invert_logo));
+    height: 40px;
+    width: 40px;
+}
+
+.switch_marker_image.cross{
+    filter: invert(var(--invert_logo));
+    height: 50px;
+    width: 50px;
 }
 
 .theme_selector {

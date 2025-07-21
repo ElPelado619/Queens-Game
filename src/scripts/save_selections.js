@@ -3,7 +3,7 @@ let stored_selections = {
     "visual_help": null,
     "theme": null,
     "difficulty": null,
-    "size": null
+    "size": null,
 };
 
 const d = document;

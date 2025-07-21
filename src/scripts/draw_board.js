@@ -2,34 +2,78 @@ import { getRegionsMatrix } from './read_boards_file.js';
 import { start_game } from './game_logic.js';
 
 let colors_matrix = null;
+let current_board_number = null;
 
 document.addEventListener("DOMContentLoaded", async () => {
   const saved_color_matrix = localStorage.getItem("colors_matrix");
+  current_board_number = localStorage.getItem("current_board_number");
+  document.getElementById("board_number").value = parseInt(current_board_number);
+  check_number_input();
+
   if (saved_color_matrix) {
     colors_matrix = JSON.parse(saved_color_matrix);
     const size = colors_matrix.length;
     draw_board(size, colors_matrix);
     start_game(colors_matrix, false);
   } else {
-    await getNewBoard();
+    if(current_board_number){
+      await getNewBoard("by_number");
+    }else{
+      await getNewBoard("random");
+    }
+    
   }
 });
 
-document.getElementById("new_game").addEventListener("click", getNewBoard);
+document.getElementById("new_game").addEventListener("click", () => getNewBoard("random"));
+document.getElementById("load_by_number").addEventListener("click", () => getNewBoard("by_number"));
+document.getElementById("board_number").addEventListener("change", () => {
+  check_number_input();
+});
 
-async function getNewBoard() {
+window.addEventListener('beforeunload', () => {
+  localStorage.setItem("current_board_number", current_board_number);
+});
+
+function check_number_input(){
+  const number = parseInt(document.getElementById("board_number").value);
+  const load_button = document.getElementById("load_by_number")
+  if (!number || number < 1) {
+    load_button.disabled = true;
+    load_button.classList.add("disabled");
+  }
+  else {
+    load_button.disabled = false;
+    load_button.classList.remove("disabled");
+  }
+}
+
+async function getNewBoard(type) {
   const size = parseInt(document.getElementById('size').value);
   const difficulty = document.getElementById('difficulty').value;
 
-  colors_matrix = await getRegionsMatrix(size, difficulty);
+  let response;
+
+  if(type === "by_number") {
+    const boardId = parseInt(document.getElementById('board_number').value);
+    response = await getRegionsMatrix(size, difficulty, boardId);
+    colors_matrix = response.matrix_key;
+  }
+  else {
+    response = await getRegionsMatrix(size, difficulty, null);
+    colors_matrix = response.matrix_key;
+  }
 
   if (colors_matrix) {
     draw_board(size, colors_matrix);
     start_game(colors_matrix, true);
     localStorage.setItem("colors_matrix", JSON.stringify(colors_matrix));
+    document.getElementById("board_number").value = parseInt(response.board_number);
+    current_board_number = response.board_number;
   } else {
     alert('Couldn\'t get a new board with the selected settings.');
   }
+  localStorage.setItem("current_board_number", response.board_number);
 }
 
 
