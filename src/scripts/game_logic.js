@@ -24,6 +24,11 @@ document.addEventListener("keydown", function(event) {
   }
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  marker_type = localStorage.getItem("marker_type");
+  change_marker_type();
+});
+
 function change_marker_type() {
   const marker_button = document.getElementById("switch_marker");
   if (marker_type === "cross") {
@@ -33,6 +38,7 @@ function change_marker_type() {
     marker_type = "cross";
     marker_button.innerHTML = '<img src="src/assets/images/cross.svg" class="switch_marker_image cross" alt="Change marker button"></img>';
   }
+  localStorage.setItem("marker_type", marker_type);
 }
 
 window.addEventListener('blur', () => {

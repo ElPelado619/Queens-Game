@@ -1,4 +1,5 @@
 .page_wrapper {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,7 +18,7 @@ body {
 .nav_wrap {
     position: fixed;
     top : 0;
-    height: 50px;
+    height: 60px;
     z-index: 200;
     width: 100%;
     display: flex;
@@ -56,7 +57,9 @@ nav {
     filter: invert(var(--invert_logo));
     -webkit-filter: invert(var(--invert_logo));
     position: absolute;
-    top: 0;
+    align-self: center;
+    top: 10%;
+    margin-left: 5px;
 }
 
 .right_nav_items{
@@ -80,11 +83,11 @@ nav {
 
 .game_wrapper{
     width: 100%;
-    margin-top: 40px;
+    margin-top: 50px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .game_sides, .game_center{
@@ -94,8 +97,12 @@ nav {
 }
 
 .game_sides{
+    display: flex;
     height: 580px;
-    padding: 0 60px 0 60px;
+    padding-left: 60px;
+    padding-right: 60px;
+
+    justify-content: center;
 }
 
 .game_sides_panels{

@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const saved_color_matrix = localStorage.getItem("colors_matrix");
   current_board_number = localStorage.getItem("current_board_number");
   document.getElementById("board_number").value = parseInt(current_board_number);
-  check_number_input();
 
   if (saved_color_matrix) {
     colors_matrix = JSON.parse(saved_color_matrix);
@@ -22,6 +21,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       await getNewBoard("random");
     }
     
+  }
+  check_number_input();
+  if(current_board_number){
+    document.getElementById("board_id_text").innerHTML = `Board ID: ${current_board_number}`;
   }
 });
 
@@ -57,23 +60,30 @@ async function getNewBoard(type) {
   if(type === "by_number") {
     const boardId = parseInt(document.getElementById('board_number').value);
     response = await getRegionsMatrix(size, difficulty, boardId);
-    colors_matrix = response.matrix_key;
+    if(response && response.matrix_key){
+      colors_matrix = response.matrix_key;
+    }
   }
   else {
     response = await getRegionsMatrix(size, difficulty, null);
-    colors_matrix = response.matrix_key;
+    if(response && response.matrix_key){colors_matrix = response.matrix_key;}
   }
 
-  if (colors_matrix) {
+  if (colors_matrix && response) {
     draw_board(size, colors_matrix);
     start_game(colors_matrix, true);
     localStorage.setItem("colors_matrix", JSON.stringify(colors_matrix));
     document.getElementById("board_number").value = parseInt(response.board_number);
+    document.getElementById("board_id_text").innerHTML = `Board ID: ${response.board_number}`;
     current_board_number = response.board_number;
   } else {
-    alert('Couldn\'t get a new board with the selected settings.');
+    alert('Couldn\'t get a new board with the chosen settings.');
   }
-  localStorage.setItem("current_board_number", response.board_number);
+
+  if(response && response.board_number){
+    localStorage.setItem("current_board_number", response.board_number);
+  }
+  check_number_input();
 }
 
 

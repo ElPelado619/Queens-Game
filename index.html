@@ -117,18 +117,19 @@
                 <h3>Size</h3>
                 <select name="szs" id="size" class="game_selectors">
                   <option value="6">6x6</option>
-                  <option value="7" selected>7x7</option>
+                  <option value="7">7x7</option>
                   <option value="8">8x8</option>
                   <option value="9">9x9</option>
                   <option value="10">10x10</option>
                 </select>
               </div>
-            </div>
 
+              <p id="board_count" style="font-size: small;">Boards that match the settings: </p>
+            </div>
 
             <div class="game_sides_inner_wrapper">
               <div style="display: flex; flex-direction: row; gap: 5px;">
-                <h3>Board ID</h3>
+                <h3 id="board_id_text">Board ID: </h3>
               </div>
               <button id="new_game">New Random Board</button>
               <hr class="divider">
@@ -163,8 +164,11 @@
           </div>
         </div>
 
-        <div class="game_sides">
+        <div class="game_sides" style="visibility: hidden;">
 
+          <div class="game_sides_panels">
+
+          </div>
 
         </div>
 

@@ -8,7 +8,7 @@ let stored_selections = {
 
 const d = document;
 
-function load_selections() {
+export function load_selections() {
     const saved_selections = localStorage.getItem("stored_selections");
     if (saved_selections) {
         try {
@@ -35,7 +35,7 @@ function store_selections() {
     localStorage.setItem("stored_selections", JSON.stringify(stored_selections));
 }
 
-window.addEventListener('DOMContentLoaded', load_selections);
+window.addEventListener('DOMContentLoaded', load_selections); //also runs on read_boards_file.js
 
 window.addEventListener('beforeunload', store_selections);
 
