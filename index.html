@@ -15,8 +15,8 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title translate="no">Queens Game</title>
-    <script type="module" crossorigin src="https://elpelado619.github.io/Queens-Game/assets/index-CiN6JXUb.js"></script>
-    <link rel="stylesheet" crossorigin href="https://elpelado619.github.io/Queens-Game/assets/index-Dw4QdX0k.css">
+    <script type="module" crossorigin src="https://elpelado619.github.io/Queens-Game/assets/index-vqJbnd2a.js"></script>
+    <link rel="stylesheet" crossorigin href="https://elpelado619.github.io/Queens-Game/assets/index-pqYpjJAo.css">
   </head>
 
   <body>
@@ -45,10 +45,11 @@
                   <div class="game_info">
                     
                     <h4>Rules</h4>
-                    <div style="font-size: 0.95rem;">
+                    <div style="font-size: 0.9rem;">
                       <li>Place one queen in every region of color to win.</li><br>
                       <li>Click on a square to place a queen or remove one.</li><br>
-                      <li>Right click to place markers or to remove them. You can also change the marker's look by clicking on it again.</li><br>
+                      <li>Right click to place markers or to remove them.</li><br>
+                      <li>You can toggle between crosses or flags by pressing the button below the board, or by pressing the spacebar.</li><br>
                       <li>You can drag the mouse to draw on the board.</li><br>
                       <li>Make sure no queens are in the same row or column.</li><br>
                       <li>Queens can be on the same diagonal but not adyacent to each other.</li>
@@ -126,7 +127,7 @@
               </div>
               <button id="new_game">New Random Board</button>
               <hr class="divider">
-              <input type="number" id="board_number" min="0" max="999999999" step="1" placeholder="insert number">
+              <input type="number" id="board_number" min="1" max="999999999" step="1" placeholder="insert number">
               <button id="load_by_number">Load a board by number</button>
             </div>
             
@@ -153,6 +154,7 @@
             <button id="clear_board">Clean up board</button>
             <button id="clear_crosses">Clean up crosses</button>
             <button id="clear_flags">Clean up flags</button>
+            <button id="switch_marker" class="switch_marker"><img src="data:image/svg+xml,%3csvg%20class='svg-icon'%20style='width:%201em;%20height:%201em;vertical-align:%20middle;fill:%20currentColor;overflow:%20hidden;'%20viewBox='0%200%201024%201024'%20version='1.1'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M810.65984%20170.65984q18.3296%200%2030.49472%2012.16512t12.16512%2030.49472q0%2018.00192-12.32896%2030.33088l-268.67712%20268.32896%20268.67712%20268.32896q12.32896%2012.32896%2012.32896%2030.33088%200%2018.3296-12.16512%2030.49472t-30.49472%2012.16512q-18.00192%200-30.33088-12.32896l-268.32896-268.67712-268.32896%20268.67712q-12.32896%2012.32896-30.33088%2012.32896-18.3296%200-30.49472-12.16512t-12.16512-30.49472q0-18.00192%2012.32896-30.33088l268.67712-268.32896-268.67712-268.32896q-12.32896-12.32896-12.32896-30.33088%200-18.3296%2012.16512-30.49472t30.49472-12.16512q18.00192%200%2030.33088%2012.32896l268.32896%20268.67712%20268.32896-268.67712q12.32896-12.32896%2030.33088-12.32896z'%20/%3e%3c/svg%3e" class="switch_marker_image cross" alt="Change marker button"></button>
           </div>
         </div>
 
