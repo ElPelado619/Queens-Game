@@ -1,7 +1,7 @@
 import { startTimer, stopTimer, getCurrentTime } from './timer.js';
 import { playSound } from './audio.js';
 
-let queens_matrix = null;
+let queens_matrix = [];
 let colors_matrix = null;
 let size = null;
 let gameCompleted = false;
@@ -13,6 +13,8 @@ let lastEditedTimeout = null;
 let isInitialClick = true; // Track initial clicks for sound control
 let rightClickStartedInBoard = false;
 let rightClickMode = null; //'draw' or 'erase'
+
+let marker_type = "cross" //cross, flag
 
 
 window.addEventListener('blur', () => {
@@ -30,23 +32,19 @@ document.addEventListener('mousedown', (e) => {
   lastEdited.clear();
   isInitialClick = true;
 
-  if (e.target.closest('td')) {
-    const cell = e.target.closest('td');
-    const [_, row, col] = cell.id.split('_').map(Number);
+  const cell = e.target.closest('td');
+  if (cell && cell.id) {
+    const idParts = cell.id.split('_');
+    if (idParts.length >= 3) {
+      const row = Number(idParts[1]);
+      const col = Number(idParts[2]);
 
-    if (mouseButton === 2) {
-      rightClickStartedInBoard = true;
-      rightClickMode = 'draw';  
-
-      if (queens_matrix[row] && queens_matrix[row][col] === 2) {
-        rightClickMode = 'erase';
-      } else {
-        rightClickMode = 'draw';
+      if (mouseButton === 2) {
+        rightClickStartedInBoard = true;
+        rightClickMode = queens_matrix[row] && queens_matrix[row][col] === 2 ? 'erase' : 'draw';
       }
-
+      edit_cell(row, col, mouseButton === 0 ? 1 : 2);
     }
-    edit_cell(row, col, mouseButton === 0 ? 1 : 2);
-
   } else {
     if (mouseButton === 2) {
       rightClickStartedInBoard = false;
@@ -88,6 +86,7 @@ function resetInputStates() {
 }
 
 export async function start_game(nueva_matriz, force_new_game) {
+  if (!nueva_matriz) return;
   document.getElementById("timer").style.color = "var(--color_text)";
   document.getElementById("timer").style.textShadow = "0 0 0px #00000000";
 
@@ -109,11 +108,11 @@ export async function start_game(nueva_matriz, force_new_game) {
         throw new Error("Invalid size");
       }
     } catch {
-      empty_board();
+      empty_board("all");
       localStorage.setItem("queens_matrix", JSON.stringify(queens_matrix));
     }
   } else {
-    empty_board();
+    empty_board("all");
     localStorage.setItem("queens_matrix", JSON.stringify(queens_matrix));
   }
 
@@ -130,6 +129,7 @@ export async function start_game(nueva_matriz, force_new_game) {
 }
 
 function render_board() {
+  invalid_queens = [];
   for (let row = 0; row < size; row++) {
     for (let col = 0; col < size; col++) {
       render_icon(row, col);
@@ -154,6 +154,10 @@ function render_icon(row, col) {
     const icon = document.createElement('div');
     icon.className = 'board_icons icon_cross';
     cell.appendChild(icon);
+  } else if (valor === 3) {
+    const icon = document.createElement('div');
+    icon.className = 'board_icons icon_flag';
+    cell.appendChild(icon);
   }
 }
 
@@ -168,8 +172,8 @@ function edit_cell(row, col, type) {
   const previousValue = queens_matrix[row][col];
   
   if (type === 1) {
-    const wasQueen = queens_matrix[row][col] === 1;
 
+    const wasQueen = queens_matrix[row][col] === 1;
     queens_matrix[row][col] = wasQueen ? 0 : 1;
 
     if (isInitialClick) {
@@ -180,10 +184,16 @@ function edit_cell(row, col, type) {
       }
     }
   } else if (type === 2) {
-    queens_matrix[row][col] = queens_matrix[row][col] === 2 ? 0 : 2;
+    if (queens_matrix[row][col] === 0) {
+      queens_matrix[row][col] = 2; // Cross
+    } else if (queens_matrix[row][col] === 2) {
+      queens_matrix[row][col] = 3; // Flag
+    } else {
+      queens_matrix[row][col] = 0; // Empty
+    }
   }
 
-  isInitialClick = false; // Mark that we've passed the initial click
+  isInitialClick = false;
   render_icon(row, col);
   localStorage.setItem("queens_matrix", JSON.stringify(queens_matrix));
   check_win_condition();
@@ -202,10 +212,11 @@ function add_drag_listeners() {
         if (mouseIsDown && !gameCompleted) {
           if (mouseButton === 2) {
             const currentValue = queens_matrix[row][col];
-            if (rightClickMode === 'draw' && currentValue !== 2) {
-              edit_cell(row, col, 2); // Draw cross
-            } else if (rightClickMode === 'erase' && currentValue === 2) {
-              edit_cell(row, col, 2); // Erase cross
+            if (rightClickMode === 'draw') {
+              // Cycle to next marker state
+              edit_cell(row, col, 2);
+            } else if (rightClickMode === 'erase' && (currentValue === 2 || currentValue === 3)) {
+              edit_cell(row, col, 2); // This will cycle through markers
             }
           } else {
             edit_cell(row, col, 1);
@@ -231,19 +242,45 @@ function add_drag_listeners() {
   }
 }
 
-function empty_board() {
-  gameCompleted = false;
-  localStorage.setItem("gameCompleted", "false");
+function empty_board(type) {
   resetInputStates();
-  queens_matrix = [];
-  for (let row = 0; row < size; row++) {
-    queens_matrix[row] = [];
-    for (let col = 0; col < size; col++) {
-      queens_matrix[row][col] = 0;
-      const cell = document.getElementById(`cell_${row}_${col}`);
-      if (cell) cell.innerHTML = '';
+
+  if (type === "crosses") {
+    for (let row = 0; row < size; row++) {
+      for (let col = 0; col < size; col++) {
+        if(queens_matrix[row][col] === 2){
+          queens_matrix[row][col] = 0;
+          const cell = document.getElementById(`cell_${row}_${col}`);
+          if (cell) cell.innerHTML = '';
+        }
+      }
     }
   }
+  else if (type === "flags") {
+    for (let row = 0; row < size; row++) {
+      for (let col = 0; col < size; col++) {
+        if(queens_matrix[row][col] === 3){
+          queens_matrix[row][col] = 0;
+          const cell = document.getElementById(`cell_${row}_${col}`);
+          if (cell) cell.innerHTML = '';
+        }
+      }
+    }
+  }
+  else {
+    gameCompleted = false;
+    localStorage.setItem("gameCompleted", "false");
+    queens_matrix = [];
+    for (let row = 0; row < size; row++) {
+      queens_matrix[row] = [];
+      for (let col = 0; col < size; col++) {
+        queens_matrix[row][col] = 0;
+        const cell = document.getElementById(`cell_${row}_${col}`);
+        if (cell) cell.innerHTML = '';
+      }
+    }
+  }
+
 }
 
 function valid_coords(row, col) {
@@ -266,20 +303,39 @@ export function cell_right_clicked(cell_id) {
 
 document.getElementById("clear_board").addEventListener("click", () => {
   if (gameCompleted) return;
-  empty_board();
+  empty_board("all");
   localStorage.setItem("queens_matrix", JSON.stringify(queens_matrix));
   render_board();
+  check_win_condition();
+});
+
+document.getElementById("clear_crosses").addEventListener("click", () => {
+  if (gameCompleted) return;
+  empty_board("crosses");
+  localStorage.setItem("queens_matrix", JSON.stringify(queens_matrix));
+  render_board();
+  check_win_condition();
+});
+
+document.getElementById("clear_flags").addEventListener("click", () => {
+  if (gameCompleted) return;
+  empty_board("flags");
+  localStorage.setItem("queens_matrix", JSON.stringify(queens_matrix));
+  render_board();
+  check_win_condition();
 });
 
 let invalid_queens = [];
 function check_win_condition() {
-  if (gameCompleted) return true;
+  if (gameCompleted || !colors_matrix) return false;
 
   invalid_queens = [];
   let win_flag = true;
   const queens = [];
   const colorCounts = {};
 
+  const allColors = colors_matrix && colors_matrix.flat ? new Set(colors_matrix.flat()) : new Set();
+  
   for (let i = 0; i < size; i++) {
     for (let j = 0; j < size; j++) {
       const cell = document.getElementById(`cell_${i}_${j}`);
@@ -315,7 +371,6 @@ function check_win_condition() {
     }
   }
 
-  const allColors = new Set(colors_matrix.flat());
   for (const color of allColors) {
     if (colorCounts[color] !== 1) {
       win_flag = false;

@@ -78,13 +78,65 @@ nav {
     opacity: 30%;
 }
 
+.game_wrapper{
+    width: 100%;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.game_sides, .game_center{
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+}
+
+.game_sides{
+    height: 580px;
+    padding: 0 60px 0 60px;
+}
+
+.game_sides_panels{
+    width: 80%;
+    height: 100%;
+    padding: 20px;
+    background-color: var(--color_nav);
+    border-radius: 20px;
+    border: 2px solid var(--color_border);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    text-align: center;
+}
+
+.game_sides_inner_wrapper{
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+hr.divider {
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;
+  width: 100%;
+}
+
 .game_selectors_wrapper{
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     width: 100%;
-    justify-content: space-between;
 }
 
 select, input, button, .game_selectors {
@@ -97,20 +149,26 @@ select, input, button, .game_selectors {
 }
 
 button, .game_selectors{
-    width: 120px;
     height: 50px;
 }
 
-button, .game_selectors {
-  font-size: clamp(8px, 2.5cqw, 16px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+button, .game_selectors, input{
+    width: 220px;
 }
 
-button, .game_selectors {
+.game_selectors_wrapper button, .game_selectors_wrapper.game_selectors, .game_selectors_wrapper.input{
+    width: 160px;
+    height: 60px;
+}
+
+button, .game_selectors, input{
     font-size: large;
+}
+
+input[type="number"] {
+    text-align: center;
+    width: 210px;
+    height: 2em;
 }
 
 .game_selectors {
@@ -162,7 +220,6 @@ a {
 
 .timer {
     text-align: center;
-    margin-top: 60px;
     filter: contrast(80%);
 }
 

@@ -58,7 +58,7 @@ string normalize_board(const string& board_content) {
 
 int main() {
     string input_dir = "./unificar_input";
-    string output_file = "./boards10.js";
+    string output_file = "./chaosBoards8.js";
 
     DIR* dir = opendir(input_dir.c_str());
     if (!dir) {
@@ -91,7 +91,7 @@ int main() {
         return 1;
     }
 
-    out << "export const boards10 = {\n";
+    out << "export const boards8 = {\n";
     int id = 1;
     for (const auto& pair : unique_boards) {
         out << "  board_" << id++ << ": " << pair.second << ",\n";
