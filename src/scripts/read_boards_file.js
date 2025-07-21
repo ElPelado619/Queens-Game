@@ -1,6 +1,6 @@
 const boardModules = import.meta.glob(['./boards*.js', './chaosBoards*.js']);
 
-export async function getRandomMatrix(size, difficulty) {
+export async function getRegionsMatrix(size, difficulty) {
   let modulePath = `./boards${size}.js`;
   if (difficulty === "chaos") {
     modulePath = `./chaosBoards${size}.js`;

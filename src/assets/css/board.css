@@ -126,6 +126,10 @@ table {
   background-image: url("../images/cross.svg");
 }
 
+.icon_flag {
+  background-image: url("../images/flag.svg");
+}
+
 .icon_queen.invalid_queen {
   background-image: url("../images/queen_icon_contrast.svg");
   transition: all 0.2s ease-in-out;

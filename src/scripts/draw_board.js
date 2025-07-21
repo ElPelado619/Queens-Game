@@ -1,4 +1,4 @@
-import { getRandomMatrix } from './read_boards_file.js';
+import { getRegionsMatrix } from './read_boards_file.js';
 import { start_game } from './game_logic.js';
 
 let colors_matrix = null;
@@ -21,14 +21,14 @@ async function getNewBoard() {
   const size = parseInt(document.getElementById('size').value);
   const difficulty = document.getElementById('difficulty').value;
 
-  colors_matrix = await getRandomMatrix(size, difficulty);
+  colors_matrix = await getRegionsMatrix(size, difficulty);
 
   if (colors_matrix) {
     draw_board(size, colors_matrix);
     start_game(colors_matrix, true);
     localStorage.setItem("colors_matrix", JSON.stringify(colors_matrix));
   } else {
-    alert('Couldn\'t get a new board');
+    alert('Couldn\'t get a new board with the selected settings.');
   }
 }
 

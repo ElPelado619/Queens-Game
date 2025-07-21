@@ -50,13 +50,16 @@
                   <div class="game_info">
                     
                     <h4>Rules</h4>
-                    <div>
+                    <div style="font-size: 0.95rem;">
                       <li>Place one queen in every region of color to win.</li><br>
                       <li>Click on a square to place a queen or remove one.</li><br>
-                      <li>Right click to place markers or to remove them.</li><br>
+                      <li>Right click to place markers or to remove them. You can also change the marker's look by clicking on it again.</li><br>
                       <li>You can drag the mouse to draw on the board.</li><br>
                       <li>Make sure no queens are in the same row or column.</li><br>
-                      <li>Queens can be on the same diagonal but not adyacent to each other.</li><br>
+                      <li>Queens can be on the same diagonal but not adyacent to each other.</li>
+                      <h4>Settings</h4>
+                      <li>You can customize the board size and game mode and play on a random board.</li><br>
+                      <li>You can also play on the same board again by using the same settings and board number.</li>
                     </div>
                   </div>
                 </div>
@@ -92,40 +95,80 @@
         </nav>
       </div>
 
-      <div class="timer">
-        <h1 id="timer">00:00:00.00</h1>
-      </div>
+      <div class="game_wrapper">
 
-      <div class="board_wrapper">
-        <div class="board">
+        <div class="game_sides">
 
-          <table id="board_table">
-            <tbody id="board">
-            </tbody>
-          </table>
+          <div class="game_sides_panels">
+
+            <div>
+              <h2>Settings</h2>
+
+              <div>
+                <h3>Mode</h3>
+                <select name="ds" id="difficulty" class="game_selectors">
+                  <option value="regular" selected>Regular mode</option>
+                  <option value="chaos">Chaos mode</option>
+                </select>
+              </div>
+
+              <div>
+                <h3>Size</h3>
+                <select name="szs" id="size" class="game_selectors">
+                  <option value="6">6x6</option>
+                  <option value="7" selected>7x7</option>
+                  <option value="8">8x8</option>
+                  <option value="9">9x9</option>
+                  <option value="10">10x10</option>
+                </select>
+              </div>
+            </div>
+
+
+            <div class="game_sides_inner_wrapper">
+              <div style="display: flex; flex-direction: row; gap: 5px;">
+                <h3>Board ID</h3>
+              </div>
+              <button id="new_game">New Random Board</button>
+              <hr class="divider">
+              <input type="number" id="board_number" min="0" max="999999999" step="1" placeholder="insert number">
+              <button id="load_by_number">Load a board by number</button>
+            </div>
+            
+          </div>
+
         </div>
 
-        <div class="game_selectors_wrapper">  
+        <div class="game_center">
 
-          <select name="ds" id="difficulty" class="game_selectors">
-            <option value="regular" selected>Regular mode</option>
-            <option value="chaos">Chaos mode</option>
-          </select>
+          <div class="timer">
+            <h1 id="timer">00:00:00.00</h1>
+          </div>
 
-          <select name="szs" id="size" class="game_selectors">
-            <option value="6">6x6</option>
-            <option value="7" selected>7x7</option>
-            <option value="8">8x8</option>
-            <option value="9">9x9</option>
-            <option value="10">10x10</option>
-          </select>
+          <div class="board_wrapper">
+            <div class="board">
+              <table id="board_table">
+                <tbody id="board">
+                </tbody>
+              </table>
+            </div>
+          </div>
 
-          <button id="new_game">New Game</button>
-          <button id="clear_board">Clean up</button>
+          <div class="game_selectors_wrapper">  
+            <button id="clear_board">Clean up board</button>
+            <button id="clear_crosses">Clean up crosses</button>
+            <button id="clear_flags">Clean up flags</button>
+          </div>
+        </div>
+
+        <div class="game_sides">
+
 
         </div>
 
       </div>
+
+      
 
     </div>
 
