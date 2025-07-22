@@ -17,7 +17,7 @@
 /* Light */
 @media (prefers-color-scheme: light) {
   :root {
-    --cell_color_1: #f94144;
+    --cell_color_1: #f64f52;
     --cell_color_2: #f3722c;
     --cell_color_3: #f8961e;
     --cell_color_4: #f9c74f;
@@ -52,7 +52,7 @@
 
 /* Manual themes */
 :root:has(option[id="theme_light"]:checked) {
-  --cell_color_1: #f94144;
+  --cell_color_1: #f64f52;
   --cell_color_2: #f3722c;
   --cell_color_3: #f8961e;
   --cell_color_4: #f9c74f;
@@ -82,16 +82,16 @@
 }
 
 :root:has(option[id="theme_newspaper"]:checked) {
-  --cell_color_1: #d0d0d0;
-  --cell_color_2: #bdbdbd;
-  --cell_color_3: #a3a3a3;
-  --cell_color_4: #9c9c9c;
-  --cell_color_5: #808080;
+  --cell_color_1: #c5c5c5;
+  --cell_color_2: #b8b8b8;
+  --cell_color_3: #9c9c9c;
+  --cell_color_4: #909090;
+  --cell_color_5: #787878;
   --cell_color_6: #6e6e6e;
   --cell_color_7: #5e5e5e;
-  --cell_color_8: #434343;
-  --cell_color_9: #353535;
-  --cell_color_10: #2c2c2c;
+  --cell_color_8: #545454;
+  --cell_color_9: #474747;
+  --cell_color_10: #3c3c3c;
 
   --board_outer_colors: #565656;
 }
@@ -99,32 +99,32 @@
 
 
 :root:has(option[id="theme_midnight"]:checked) {
-  --cell_color_1: #9e0142;
-  --cell_color_2: #d53e4f;
-  --cell_color_3: #f46d43;
-  --cell_color_4: #b79946;
-  --cell_color_5: #38ad88;
-  --cell_color_6: #3288bd;
-  --cell_color_7: #534fa2;
-  --cell_color_8: #4e3d9e;
-  --cell_color_9: #87329f;
-  --cell_color_10: #8b1767;
+  --cell_color_1: #A41B52;
+  --cell_color_2: #B24747;
+  --cell_color_3: #A26244;
+  --cell_color_4: #A77F4D;
+  --cell_color_5: #688B65;
+  --cell_color_6: #3A7578;
+  --cell_color_7: #245789;
+  --cell_color_8: #426675;
+  --cell_color_9: #485973;
+  --cell_color_10: #656294;
 
   --board_outer_colors: #ffffff;
 }
 
 
 :root:has(option[id="theme_space"]:checked) {
-  --cell_color_1: #eca82b;
-  --cell_color_2: #f67e2f;
+  --cell_color_1: #eaa038;
+  --cell_color_2: #f77c2a;
   --cell_color_3: #f65f5c;
   --cell_color_4: #de5a79;
   --cell_color_5: #bc5090;
   --cell_color_6: #8a508f;
-  --cell_color_7: #58508d;
-  --cell_color_8: #4c407e;
-  --cell_color_9: #3d356a;
-  --cell_color_10: #2f2d61;
+  --cell_color_7: #725696;
+  --cell_color_8: #56478c;
+  --cell_color_9: #3c3c82;
+  --cell_color_10: #2b3c63;
 
   --board_outer_colors: #ffffff;
 }
@@ -141,6 +141,21 @@
   --cell_color_8: #0c126c;
   --cell_color_9: #090749;
   --cell_color_10: #0e063a;
+
+  --board_outer_colors: #ffffff;
+}
+
+:root:has(option[id="theme_cave"]:checked){
+  --cell_color_1: #b76935;
+  --cell_color_2: #a56336;
+  --cell_color_3: #935e38;
+  --cell_color_4: #815839;
+  --cell_color_5: #6f523b;
+  --cell_color_6: #5c4d3c;
+  --cell_color_7: #4a473e;
+  --cell_color_8: #38413f;
+  --cell_color_9: #293e40;
+  --cell_color_10: #1b363f;
 
   --board_outer_colors: #ffffff;
 }

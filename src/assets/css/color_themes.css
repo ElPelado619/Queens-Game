@@ -8,8 +8,8 @@
 
   /* Light */
   --light_color1: #000000;
-  --light_color2: #ffffff;
-  --light_color3: #d5d5d5;
+  --light_color2: #ececec;
+  --light_color3: #cccccc;
   --light_color4: #a1a1a1;
   --light_color5: #000000;
   --light_border: #b9b9b9;
@@ -26,39 +26,48 @@
 
   /* Newspaper Theme */
   --newspaper_color1: #000000;
-  --newspaper_color2: #a3a3a3;
-  --newspaper_color3: #8d8d8d;
-  --newspaper_color4: #888888;
+  --newspaper_color2: #a9a9a9;
+  --newspaper_color3: #939393;
+  --newspaper_color4: #7d7d7d;
   --newspaper_color5: #1a1a1a;
   --newspaper_border: #585858;
   --newspaper_nav_text: #2a2a2a;
 
   /* Midnight Theme */
   --midnight_color1: #eef4ed;
-  --midnight_color2: #0a131e;
-  --midnight_color3: #070a12;
-  --midnight_color4: #202d3d;
-  --midnight_color5: #4c77b0;
-  --midnight_border: #1b2433;
+  --midnight_color2: #11171c;
+  --midnight_color3: #0c0e15;
+  --midnight_color4: #1d232b;
+  --midnight_color5: #6d7887;
+  --midnight_border: #22262e;
   --midnight_nav_text: #eef4ed;
 
   /* Space Theme */
   --space_color1: #ffffff;
-  --space_color2: #000000;
+  --space_color2: #101010;
   --space_color3: #0d0d0d;
-  --space_color4: #2f3236;
+  --space_color4: #222426;
   --space_color5: #ffffff;
   --space_border: #202020;
   --space_nav_text: #ffffff;
 
   /* Ocean Theme */
   --ocean_color1: #ffffff;
-  --ocean_color2: #0f243b;
-  --ocean_color3: #111e2f;
-  --ocean_color4: #274670;
-  --ocean_color5: #56adff;
-  --ocean_border: #2c3e50;
+  --ocean_color2: #162a3f;
+  --ocean_color3: #15223b;
+  --ocean_color4: #223958;
+  --ocean_color5: #96b5d2;
+  --ocean_border: #324a63;
   --ocean_nav_text: #ffffff;
+
+  /* Cave theme */
+  --cave_color1: #ffffff;
+  --cave_color2: #322b26;
+  --cave_color3: #261f1c;
+  --cave_color4: #181411;
+  --cave_color5: #98867c;
+  --cave_border: #493937;
+  --cave_nav_text: #ffffff;
 }
 
 
@@ -165,6 +174,18 @@
   --color_input_text: var(--ocean_color5);
   --color_nav_text: var(--ocean_nav_text);
   --color_border: var(--ocean_border);
+  --invert_logo: var(--inverted_true);
+  --timer_victory_color: #61e82c;
+}
+
+:root:has(option[id="theme_cave"]:checked){
+  --color_text: var(--cave_color1);
+  --color_bg: var(--cave_color2);
+  --color_nav: var(--cave_color3);
+  --color_input: var(--cave_color4);
+  --color_input_text: var(--cave_color5);
+  --color_nav_text: var(--cave_nav_text);
+  --color_border: var(--cave_border);
   --invert_logo: var(--inverted_true);
   --timer_victory_color: #61e82c;
 }
