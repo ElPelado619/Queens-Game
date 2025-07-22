@@ -1,4 +1,5 @@
 .page_wrapper {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,7 +18,7 @@ body {
 .nav_wrap {
     position: fixed;
     top : 0;
-    height: 50px;
+    height: 60px;
     z-index: 200;
     width: 100%;
     display: flex;
@@ -56,7 +57,9 @@ nav {
     filter: invert(var(--invert_logo));
     -webkit-filter: invert(var(--invert_logo));
     position: absolute;
-    top: 0;
+    align-self: center;
+    top: 10%;
+    margin-left: 5px;
 }
 
 .right_nav_items{
@@ -78,13 +81,69 @@ nav {
     opacity: 30%;
 }
 
-.game_selectors_wrapper{
+.game_wrapper{
+    width: 100%;
+    margin-top: 50px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+}
+
+.game_sides, .game_center{
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+}
+
+.game_sides{
+    display: flex;
+    height: 580px;
+    padding-left: 60px;
+    padding-right: 60px;
+
+    justify-content: center;
+}
+
+.game_sides_panels{
+    width: 80%;
+    height: 100%;
+    padding: 20px;
+    background-color: var(--color_nav);
+    border-radius: 20px;
+    border: 2px solid var(--color_border);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    text-align: center;
+}
+
+.game_sides_inner_wrapper{
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+hr.divider {
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;
+  width: 100%;
+}
+
+.game_selectors_wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
     width: 100%;
-    justify-content: space-between;
 }
 
 select, input, button, .game_selectors {
@@ -97,20 +156,27 @@ select, input, button, .game_selectors {
 }
 
 button, .game_selectors{
-    width: 120px;
     height: 50px;
 }
 
-button, .game_selectors {
-  font-size: clamp(8px, 2.5cqw, 16px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+button, .game_selectors, input{
+    width: 220px;
 }
 
-button, .game_selectors {
+.game_selectors_wrapper button, .game_selectors_wrapper.game_selectors, .game_selectors_wrapper.input{
+    width: 140px;
+    height: 60px;
+    font-size: medium;
+}
+
+button, .game_selectors, input{
     font-size: large;
+}
+
+input[type="number"] {
+    text-align: center;
+    width: 210px;
+    height: 2em;
 }
 
 .game_selectors {
@@ -145,6 +211,41 @@ input:active, button:active, .game_selectors:active {
     border: 1px solid var(--color_bg);
 }
 
+input.disabled, button.disabled, .game_selectors.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+button.switch_marker{
+  cursor: pointer;
+  height: 60px;
+  width: 60px;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  display: flex
+}
+
+.switch_marker_image.flag{
+    filter: invert(var(--invert_logo));
+    height: 40px;
+    width: 40px;
+    background-image: url("../images/flag.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.switch_marker_image.cross{
+    filter: invert(var(--invert_logo));
+    height: 50px;
+    width: 50px;
+    background-image: url("../images/cross.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 .theme_selector {
     background-color: var(--color_bg);
     color: var(--color_input_text);
@@ -162,7 +263,6 @@ a {
 
 .timer {
     text-align: center;
-    margin-top: 60px;
     filter: contrast(80%);
 }
 

@@ -1,8 +1,8 @@
 import { startTimer, stopTimer, getCurrentTime } from './timer.js';
 import { playSound } from './audio.js';
 
-let queens_matrix = null;
-let colors_matrix = null;
+let queens_matrix = [];
+let colors_matrix = [];
 let size = null;
 let gameCompleted = false;
 
@@ -10,7 +10,40 @@ let mouseIsDown = false;
 let mouseButton = null;
 let lastEdited = new Set();
 let lastEditedTimeout = null;
-let isInitialClick = true; // Track initial clicks for sound control
+let isInitialClick = true;
+let rightClickStartedInBoard = false;
+let rightClickMode = null; // 'draw', 'erase_flags', or 'erase_crosses'
+
+let marker_type = "cross"; // 'cross' or 'flag'
+
+document.getElementById("switch_marker").addEventListener("click", change_marker_type);
+
+document.addEventListener("keydown", function(event) {
+  if (event.key === " ") {
+    change_marker_type();
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  marker_type = localStorage.getItem("marker_type");
+  change_marker_type();
+});
+
+function change_marker_type() {
+  const marker_button = document.getElementById("switch_marker");
+  marker_button.innerHTML = '';
+  const new_div = document.createElement('div');
+  if (marker_type === "cross") {
+    marker_type = "flag";
+    new_div.className = 'switch_marker_image flag';
+    marker_button.appendChild(new_div);
+  } else {
+    marker_type = "cross";
+    new_div.className = 'switch_marker_image cross';
+    marker_button.appendChild(new_div);
+  }
+  localStorage.setItem("marker_type", marker_type);
+}
 
 window.addEventListener('blur', () => {
   mouseIsDown = false;
@@ -25,19 +58,37 @@ document.addEventListener('mousedown', (e) => {
   mouseIsDown = true;
   mouseButton = e.button;
   lastEdited.clear();
-  isInitialClick = true; // This is a new click operation
+  isInitialClick = true;
 
-  if (e.target.closest('td')) {
-    const cell = e.target.closest('td');
-    const [_, row, col] = cell.id.split('_').map(Number);
-    edit_cell(row, col, mouseButton === 0 ? 1 : 2);
+  const cell = e.target.closest('td');
+  if (cell && cell.id) {
+    const idParts = cell.id.split('_');
+    if (idParts.length >= 3) {
+      const row = Number(idParts[1]);
+      const col = Number(idParts[2]);
+
+      if (mouseButton === 2) {
+        rightClickStartedInBoard = true;
+        const currentValue = queens_matrix[row] ? queens_matrix[row][col] : undefined; 
+        rightClickMode = currentValue === 3 ? 'erase_flags' : currentValue === 2 ? 'erase_crosses' : 'draw';
+      }
+      edit_cell(row, col, mouseButton === 0 ? 1 : 2);
+    }
   }
+});
+
+document.addEventListener('contextmenu', (e) => {
+  if (rightClickStartedInBoard) {
+    e.preventDefault();
+  }
+  rightClickStartedInBoard = false;
 });
 
 document.addEventListener('mouseup', (e) => {
   if (e.button === mouseButton) {
     mouseIsDown = false;
     mouseButton = null;
+    rightClickMode = null;
     lastEditedTimeout = setTimeout(() => lastEdited.clear(), 50);
   }
 });
@@ -58,6 +109,7 @@ function resetInputStates() {
 }
 
 export async function start_game(nueva_matriz, force_new_game) {
+  if (!nueva_matriz) return;
   document.getElementById("timer").style.color = "var(--color_text)";
   document.getElementById("timer").style.textShadow = "0 0 0px #00000000";
 
@@ -79,11 +131,11 @@ export async function start_game(nueva_matriz, force_new_game) {
         throw new Error("Invalid size");
       }
     } catch {
-      empty_board();
+      empty_board("all");
       localStorage.setItem("queens_matrix", JSON.stringify(queens_matrix));
     }
   } else {
-    empty_board();
+    empty_board("all");
     localStorage.setItem("queens_matrix", JSON.stringify(queens_matrix));
   }
 
@@ -100,6 +152,7 @@ export async function start_game(nueva_matriz, force_new_game) {
 }
 
 function render_board() {
+  invalid_queens = [];
   for (let row = 0; row < size; row++) {
     for (let col = 0; col < size; col++) {
       render_icon(row, col);
@@ -124,6 +177,10 @@ function render_icon(row, col) {
     const icon = document.createElement('div');
     icon.className = 'board_icons icon_cross';
     cell.appendChild(icon);
+  } else if (valor === 3) {
+    const icon = document.createElement('div');
+    icon.className = 'board_icons icon_flag';
+    cell.appendChild(icon);
   }
 }
 
@@ -139,7 +196,6 @@ function edit_cell(row, col, type) {
   
   if (type === 1) {
     const wasQueen = queens_matrix[row][col] === 1;
-
     queens_matrix[row][col] = wasQueen ? 0 : 1;
 
     if (isInitialClick) {
@@ -150,10 +206,11 @@ function edit_cell(row, col, type) {
       }
     }
   } else if (type === 2) {
-    queens_matrix[row][col] = queens_matrix[row][col] === 2 ? 0 : 2;
+    const desiredValue = marker_type === "flag" ? 3 : 2;
+    queens_matrix[row][col] = (queens_matrix[row][col] === desiredValue) ? 0 : desiredValue;
   }
 
-  isInitialClick = false; // Mark that we've passed the initial click
+  isInitialClick = false;
   render_icon(row, col);
   localStorage.setItem("queens_matrix", JSON.stringify(queens_matrix));
   check_win_condition();
@@ -170,13 +227,32 @@ function add_drag_listeners() {
 
       newCell.addEventListener('mouseenter', () => {
         if (mouseIsDown && !gameCompleted) {
-          edit_cell(row, col, mouseButton === 2 ? 2 : 1);
+          if (mouseButton === 2) {
+            if (rightClickMode === 'draw') {
+              const desiredValue = marker_type === "flag" ? 3 : 2;
+              if (queens_matrix[row][col] !== desiredValue) {
+                edit_cell(row, col, 2);
+              }
+            } 
+            else if (rightClickMode === 'erase_flags' && queens_matrix[row][col] === 3) {
+              queens_matrix[row][col] = 0;
+              render_icon(row, col);
+              localStorage.setItem("queens_matrix", JSON.stringify(queens_matrix));
+            }
+            else if (rightClickMode === 'erase_crosses' && queens_matrix[row][col] === 2) {
+              queens_matrix[row][col] = 0;
+              render_icon(row, col);
+              localStorage.setItem("queens_matrix", JSON.stringify(queens_matrix));
+            }
+          } else {
+            edit_cell(row, col, 1);
+          }
         }
       });
 
       newCell.addEventListener('click', (e) => {
         if (e.button === 0 && !gameCompleted) {
-          isInitialClick = true; // Force sound for click
+          isInitialClick = true;
           edit_cell(row, col, 1);
         }
       });
@@ -184,7 +260,7 @@ function add_drag_listeners() {
       newCell.addEventListener('contextmenu', (e) => {
         e.preventDefault();
         if (!gameCompleted) {
-          isInitialClick = true; // Force sound for right-click
+          isInitialClick = true;
           edit_cell(row, col, 2);
         }
       });
@@ -192,17 +268,42 @@ function add_drag_listeners() {
   }
 }
 
-function empty_board() {
-  gameCompleted = false;
-  localStorage.setItem("gameCompleted", "false");
+function empty_board(type) {
   resetInputStates();
-  queens_matrix = [];
-  for (let row = 0; row < size; row++) {
-    queens_matrix[row] = [];
-    for (let col = 0; col < size; col++) {
-      queens_matrix[row][col] = 0;
-      const cell = document.getElementById(`cell_${row}_${col}`);
-      if (cell) cell.innerHTML = '';
+
+  if (type === "crosses") {
+    for (let row = 0; row < size; row++) {
+      for (let col = 0; col < size; col++) {
+        if(queens_matrix[row][col] === 2) {
+          queens_matrix[row][col] = 0;
+          const cell = document.getElementById(`cell_${row}_${col}`);
+          if (cell) cell.innerHTML = '';
+        }
+      }
+    }
+  }
+  else if (type === "flags") {
+    for (let row = 0; row < size; row++) {
+      for (let col = 0; col < size; col++) {
+        if(queens_matrix[row][col] === 3) {
+          queens_matrix[row][col] = 0;
+          const cell = document.getElementById(`cell_${row}_${col}`);
+          if (cell) cell.innerHTML = '';
+        }
+      }
+    }
+  }
+  else {
+    gameCompleted = false;
+    localStorage.setItem("gameCompleted", "false");
+    queens_matrix = [];
+    for (let row = 0; row < size; row++) {
+      queens_matrix[row] = [];
+      for (let col = 0; col < size; col++) {
+        queens_matrix[row][col] = 0;
+        const cell = document.getElementById(`cell_${row}_${col}`);
+        if (cell) cell.innerHTML = '';
+      }
     }
   }
 }
@@ -214,33 +315,52 @@ function valid_coords(row, col) {
 export function cell_clicked(cell_id) {
   if (gameCompleted) return;
   const [_, row, col] = cell_id.split('_').map(Number);
-  isInitialClick = true; // Ensure sound plays
+  isInitialClick = true;
   edit_cell(row, col, 1);
 }
 
 export function cell_right_clicked(cell_id) {
   if (gameCompleted) return;
   const [_, row, col] = cell_id.split('_').map(Number);
-  isInitialClick = true; // Ensure sound plays
+  isInitialClick = true;
   edit_cell(row, col, 2);
 }
 
 document.getElementById("clear_board").addEventListener("click", () => {
   if (gameCompleted) return;
-  empty_board();
+  empty_board("all");
   localStorage.setItem("queens_matrix", JSON.stringify(queens_matrix));
   render_board();
+  check_win_condition();
+});
+
+document.getElementById("clear_crosses").addEventListener("click", () => {
+  if (gameCompleted) return;
+  empty_board("crosses");
+  localStorage.setItem("queens_matrix", JSON.stringify(queens_matrix));
+  render_board();
+  check_win_condition();
+});
+
+document.getElementById("clear_flags").addEventListener("click", () => {
+  if (gameCompleted) return;
+  empty_board("flags");
+  localStorage.setItem("queens_matrix", JSON.stringify(queens_matrix));
+  render_board();
+  check_win_condition();
 });
 
 let invalid_queens = [];
 function check_win_condition() {
-  if (gameCompleted) return true;
+  if (gameCompleted || !colors_matrix) return false;
 
   invalid_queens = [];
   let win_flag = true;
   const queens = [];
   const colorCounts = {};
 
+  const allColors = colors_matrix && colors_matrix.flat ? new Set(colors_matrix.flat()) : new Set();
+  
   for (let i = 0; i < size; i++) {
     for (let j = 0; j < size; j++) {
       const cell = document.getElementById(`cell_${i}_${j}`);
@@ -276,7 +396,6 @@ function check_win_condition() {
     }
   }
 
-  const allColors = new Set(colors_matrix.flat());
   for (const color of allColors) {
     if (colorCounts[color] !== 1) {
       win_flag = false;

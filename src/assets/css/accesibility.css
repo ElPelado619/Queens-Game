@@ -13,6 +13,9 @@
   background-image: url("../images/croos_contrast.svg");
 }
 
+:root:has(option#visual_accessibility:checked) .icon_flag {
+  background-image: url("../images/flag_contrast.svg");
+}
 
 /* star */
 :root:has(option#visual_accessibility:checked) .board td.cell_color_1 { background-size: 80%; }

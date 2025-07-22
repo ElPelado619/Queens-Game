@@ -1,32 +1,95 @@
-export async function getRandomMatrix(size) {
-  try {
-    let modulePath;
+import { load_selections } from "./save_selections";
+const boardModules = import.meta.glob(['./boards*.js', './chaosBoards*.js']);
 
-    switch (size) {
-      case 6: modulePath = './boards6.js'; break;
-      case 7: modulePath = './boards7.js'; break;
-      case 8: modulePath = './boards8.js'; break;
-      case 9: modulePath = './boards9.js'; break;
-      case 10: modulePath = './boards10.js'; break;
-      default: throw new Error("Invalid board size: " + size);
-    }
+export async function getRegionsMatrix(size, difficulty, boardId) {
+  let modulePath = `./boards${size}.js`;
+  if (difficulty === "chaos") {
+    modulePath = `./chaosBoards${size}.js`;
+  }
 
-    const boardsModule = await import(modulePath);
+  const loader = boardModules[modulePath];
 
-    const exportName = `boards${size}`;
-    const boardsObj = boardsModule[exportName];
-    if (!boardsObj) throw new Error(`Exported object ${exportName} not found in ${modulePath}`);
-
-    const boardList = Object.values(boardsObj);
-    if (boardList.length === 0) throw new Error(`No boards found in ${modulePath}`);
-
-    const randomIndex = Math.floor(Math.random() * boardList.length);
-    const chosenBoard = boardList[randomIndex];
-
-    return chosenBoard;
-
-  } catch (error) {
-    console.error('Board loading error:', error);
+  if (!loader) {
+    console.error(`No board file found for path: ${modulePath}`);
     return null;
   }
+
+  const module = await loader();
+  const boardsObj = module[`boards${size}`];
+
+  if (!boardsObj) {
+    console.error(`No boards object named boards${size} in ${modulePath}`);
+    return null;
+  }
+
+  if (!isNaN(boardId) && boardId >= 1) {
+    const boardKey = `board_${boardId}`;
+    if (!(boardKey in boardsObj)) {
+      console.warn(`${boardKey} does not exist in boards${size}.`);
+      return null;
+    } else {
+      console.log(`Loaded ${boardKey}, from boards${size} in ${modulePath}`);
+      return {
+        matrix_key: boardsObj[boardKey],
+        board_number: boardId
+      };
+    }
+  }
+
+  const boardKeys = Object.keys(boardsObj);
+  if (boardKeys.length === 0) {
+    console.error(`No boards found in boards${size}`);
+    return null;
+  }
+
+  const randomKey = boardKeys[Math.floor(Math.random() * boardKeys.length)];
+  return {
+    matrix_key: boardsObj[randomKey],
+    board_number: parseInt(randomKey.split('_')[1])
+  };
+}
+
+
+
+document.addEventListener("DOMContentLoaded", async() => {
+  board_count.innerHTML = "Boards that match the settings: "
+  load_selections();
+  getCountSizeAndMode();
+});
+
+
+document.getElementById("size").addEventListener("change", getCountSizeAndMode);
+document.getElementById("difficulty").addEventListener("change", getCountSizeAndMode);
+
+async function getCountSizeAndMode(){
+  const size = document.getElementById("size").value;
+  const difficulty = document.getElementById("difficulty").value;
+  const board_count = document.getElementById("board_count");
+
+  let modulePath = `./boards${size}.js`;
+  if (difficulty === "chaos") {
+    modulePath = `./chaosBoards${size}.js`;
+  }
+  const loader = boardModules[modulePath];
+  if (!loader) {
+    console.warn(`No board file found for path: ${modulePath}`);
+    board_count.innerHTML = "Boards that match the settings: 0" 
+    return null;
+  }
+  const module = await loader();
+  const boardsObj = module[`boards${size}`];
+  
+  if (!boardsObj) {
+    console.warn(`No boards object named boards${size} in ${modulePath}`);
+    board_count.innerHTML = "Boards that match the settings: 0" 
+    return null;
+  }
+
+  const boardKeys = Object.keys(boardsObj)
+  let count = 0;
+  for (let i = 0; i < boardKeys.length; i++) {
+    count++;
+  }
+
+  board_count.innerHTML = "Boards that match the settings: " + count;
 }
