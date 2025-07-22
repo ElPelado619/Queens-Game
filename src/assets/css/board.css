@@ -138,6 +138,7 @@ table {
 
 }
 
+
 :root:has(option[id="theme_newspaper"]:checked):root:has(option#visual_accessibility:checked) .icon_queen.invalid_queen {
   background-image: url("../images/queen_icon.svg");
   transition: all 0.2s ease-in-out;

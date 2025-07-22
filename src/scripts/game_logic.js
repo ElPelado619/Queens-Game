@@ -31,12 +31,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function change_marker_type() {
   const marker_button = document.getElementById("switch_marker");
+  marker_button.innerHTML = '';
+  const new_div = document.createElement('div');
   if (marker_type === "cross") {
     marker_type = "flag";
-    marker_button.innerHTML = '<img src="src/assets/images/flag.svg" class="switch_marker_image flag" alt="Change marker button"></img>';
+    new_div.className = 'switch_marker_image flag';
+    marker_button.appendChild(new_div);
   } else {
     marker_type = "cross";
-    marker_button.innerHTML = '<img src="src/assets/images/cross.svg" class="switch_marker_image cross" alt="Change marker button"></img>';
+    new_div.className = 'switch_marker_image cross';
+    marker_button.appendChild(new_div);
   }
   localStorage.setItem("marker_type", marker_type);
 }
