@@ -241,8 +241,8 @@ if __name__ == "__main__":
 
     # Options: "TestOneBoard", "TestFindSolutions", or "GenerateBoards"
     LAUNCH_OPTION = "GenerateBoards"  # Change this to test different functionalities
-    SIZE = 8  # Default size for the board
-    TOTAL_BOARDS = 10  # Number of boards to generate if LAUNCH_OPTION is "GenerateBoards"
+    SIZE = 10  # Default size for the board
+    TOTAL_BOARDS = 300  # Number of boards to generate if LAUNCH_OPTION is "GenerateBoards"
 
     if LAUNCH_OPTION == "TestOneBoard":
         board = createBoard(size=SIZE)

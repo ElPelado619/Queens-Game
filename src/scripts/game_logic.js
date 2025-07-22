@@ -26,20 +26,27 @@ document.addEventListener("keydown", function(event) {
 
 document.addEventListener("DOMContentLoaded", () => {
   marker_type = localStorage.getItem("marker_type");
-  change_marker_type();
+  match_marker_type();
 });
 
 function change_marker_type() {
+  if (marker_type === "cross") {
+    marker_type = "flag";
+  } else {
+    marker_type = "cross";
+  }
+  match_marker_type();
+}
+
+function match_marker_type(){
   const marker_button = document.getElementById("switch_marker");
   marker_button.innerHTML = '';
   const new_div = document.createElement('div');
   if (marker_type === "cross") {
-    marker_type = "flag";
-    new_div.className = 'switch_marker_image flag';
+    new_div.className = 'switch_marker_image cross';
     marker_button.appendChild(new_div);
   } else {
-    marker_type = "cross";
-    new_div.className = 'switch_marker_image cross';
+    new_div.className = 'switch_marker_image flag';
     marker_button.appendChild(new_div);
   }
   localStorage.setItem("marker_type", marker_type);
