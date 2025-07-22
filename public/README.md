@@ -1,4 +1,4 @@
-# Queens Game - Version 0.4.3
+# Queens Game - Version 0.5.0
 
 https://elpelado619.github.io/Queens-Game/
 

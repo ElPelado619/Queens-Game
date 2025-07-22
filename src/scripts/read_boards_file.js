@@ -1,10 +1,10 @@
 import { load_selections } from "./save_selections";
-const boardModules = import.meta.glob(['./boards*.js', './chaosBoards*.js']);
+const boardModules = import.meta.glob(['./boards/boards*.js', './boards/chaosBoards*.js']);
 
 export async function getRegionsMatrix(size, difficulty, boardId) {
-  let modulePath = `./boards${size}.js`;
+  let modulePath = `./boards/boards${size}.js`;
   if (difficulty === "chaos") {
-    modulePath = `./chaosBoards${size}.js`;
+    modulePath = `./boards/chaosBoards${size}.js`;
   }
 
   const loader = boardModules[modulePath];
@@ -66,9 +66,9 @@ async function getCountSizeAndMode(){
   const difficulty = document.getElementById("difficulty").value;
   const board_count = document.getElementById("board_count");
 
-  let modulePath = `./boards${size}.js`;
+  let modulePath = `./boards/boards${size}.js`;
   if (difficulty === "chaos") {
-    modulePath = `./chaosBoards${size}.js`;
+    modulePath = `./boards/chaosBoards${size}.js`;
   }
   const loader = boardModules[modulePath];
   if (!loader) {
