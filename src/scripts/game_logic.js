@@ -24,6 +24,12 @@ document.addEventListener("keydown", function(event) {
   }
 });
 
+document.addEventListener('mousedown', function(event) {
+    if (event.button === 1) {
+      change_marker_type();
+    }
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   marker_type = localStorage.getItem("marker_type");
   match_marker_type();
